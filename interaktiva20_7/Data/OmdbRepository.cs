@@ -19,9 +19,9 @@ namespace interaktiva20_7.Data
             baseUrl = configuration.GetValue<string>("OMDBApi:BaseUrl");
         }
 
-        public async Task<IEnumerable<MovieDto>> GetMovieBySearch(string searchString)
+        public async Task<SearchDto> GetMovieBySearch(string searchString)
         {
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 try
                 {
@@ -29,7 +29,7 @@ namespace interaktiva20_7.Data
                     var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                     response.EnsureSuccessStatusCode();
                     var data = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(data);
+                    var result = JsonConvert.DeserializeObject<SearchDto>(data);
                     return result;
                 }
                 catch (Exception ex)

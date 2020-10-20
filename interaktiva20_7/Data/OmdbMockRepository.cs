@@ -10,11 +10,11 @@ namespace interaktiva20_7.Data
 {
     public class OmdbMockRepository : IOmdbRepository
     {
-        public async Task<IEnumerable<MovieDto>> GetMovieBySearch(string searchString)
+        public async Task<SearchDto> GetMovieBySearch(string searchString)
         {
 
-            var response = new WebClient().DownloadString("./Test/StarWarsMock.json");
-            var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(response);
+            var response = new WebClient().DownloadString("./Test/StarWarsMockComplete.json");
+            var result = JsonConvert.DeserializeObject<SearchDto>(response);
             return result;
 
         }
