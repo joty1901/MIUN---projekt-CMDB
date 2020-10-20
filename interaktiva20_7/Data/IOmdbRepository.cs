@@ -8,6 +8,6 @@ namespace interaktiva20_7.Data
 {
     public interface IOmdbRepository
     {
-        Task<IEnumerable<MovieDto>> GetMovieBySearch(string searchString);
+        Task<SearchDto> GetMovieBySearch(string searchString);
     }
 }
