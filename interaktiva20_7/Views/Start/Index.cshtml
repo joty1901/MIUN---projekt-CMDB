@@ -1,4 +1,4 @@
-﻿        @model IEnumerable<interaktiva20_7.Models.DTO.MovieDto>
+﻿        @model interaktiva20_7.Models.DTO.SearchDto
 
         <div id="gtco-features">
             <div class="gtco-container">
@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
                         <h2>Watch Our Videos</h2>
-                        @foreach (var movie in Model)
+                        @foreach (var movie in Model.Search)
                         {
                             <h3>@Html.DisplayFor(item => movie.Title)</h3>
                             <p>@Html.DisplayFor(item => movie.Year)</p>
