@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace interaktiva20_7.Data
 {
-    interface IOmdbRepository
+    public interface IOmdbRepository
     {
         Task<IEnumerable<MovieDto>> GetMovieBySearch(string searchString);
     }
