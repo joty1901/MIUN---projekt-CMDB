@@ -16,17 +16,18 @@ namespace interaktiva20_7.Controllers
             this.omdbRepository = omdbRepository;
         }
 
-        public async Task<IActionResult> Movies()
+        //public async Task<IActionResult> Movies()
+        //{
+        //    //TODO: Ändra namn på metoden Movies till något vettigt.
+        //    //TODO: Ändra en hårdkodade söksträngen som GetMovieBySearch just nu använder.
+        //    var model = await omdbRepository.GetMovieBySearch("Star");
+        //    return View(model);
+        //}
+
+        public async Task<IActionResult> Index()
         {
-            //TODO: Ändra namn på metoden Movies till något vettigt.
-            //TODO: Ändra en hårdkodade söksträngen som GetMovieBySearch just nu använder.
             var model = await omdbRepository.GetMovieBySearch("Star");
             return View(model);
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
     }
 }

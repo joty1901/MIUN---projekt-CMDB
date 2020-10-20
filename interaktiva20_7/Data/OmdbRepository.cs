@@ -25,12 +25,12 @@ namespace interaktiva20_7.Data
             {
                 try
                 {
-                string endpoint = $"{baseUrl}/?t={searchString}&s={searchString}&apikey=398aa398";
-                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-                response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(data);
-                return result;
+                    string endpoint = $"{baseUrl}/?t={searchString}&s={searchString}&apikey=398aa398";
+                    var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                    response.EnsureSuccessStatusCode();
+                    var data = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(data);
+                    return result;
                 }
                 catch (Exception ex)
                 {
