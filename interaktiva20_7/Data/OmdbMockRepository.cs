@@ -12,14 +12,9 @@ namespace interaktiva20_7.Data
     {
         public async Task<IEnumerable<MovieDto>> GetMovieBySearch(string searchString)
         {
-
             var response = new WebClient().DownloadString("./Test/StarWarsMock.json");
             var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(response);
             return result;
-
         }
-
-
-
     }
 }
