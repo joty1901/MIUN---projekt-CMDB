@@ -10,10 +10,12 @@ namespace interaktiva20_7.Controllers
     public class StartController : Controller
     {
         private IOmdbRepository omdbRepository;
+        private ICmdbRepository cmdbRepository;
 
-        public StartController(IOmdbRepository omdbRepository)
+        public StartController(IOmdbRepository omdbRepository, ICmdbRepository cmdbRepository)
         {
             this.omdbRepository = omdbRepository;
+            this.cmdbRepository = cmdbRepository;
         }
 
         //public async Task<IActionResult> Movies()

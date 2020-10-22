@@ -12,5 +12,8 @@ namespace interaktiva20_7.Models.DTO
         public string ImdbID { get; set; }
         public string Type { get; set; }
         public string Poster { get; set; }
+        public int Like { get; set; }
+        public int Dislike { get; set; }
+
     }
 }
