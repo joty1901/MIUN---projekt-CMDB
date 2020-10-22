@@ -1,4 +1,4 @@
-﻿@model interaktiva20_7.Models.DTO.SearchDto
+﻿@model interaktiva20_7.ViewModels.MoviesViewModel
 
 <div id="gtco-features">
     <div class="gtco-container">
@@ -7,9 +7,12 @@
             <div class="col-md-4 col-sm-4" style="width:100%;">
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
                     @*<img src="https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" />*@
-                    <h3>Movie Title</h3>
-                    <p>Plot description.... Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. </p>
-                    <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
+                    
+                    
+                        @*<h3>@Html.DisplayFor(item => Model.movies[0].ImdbID)</h3>
+                        <p>@Html.DisplayFor(item => Model.movies[0].numberOfLikes)</p>*@
+                        <br />
+                    
                 </div>
             </div>
         </div>
@@ -23,12 +26,7 @@
             <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
                 <h2></h2>
-                @foreach (var movie in Model.Search)
-                {
-                    <h3>@Html.DisplayFor(item => movie.Title)</h3>
-                    <p>@Html.DisplayFor(item => movie.Year)</p>
-                    <br/>
-                }
+                
             </div>
         </div>
 

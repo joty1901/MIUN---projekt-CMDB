@@ -9,12 +9,10 @@ namespace interaktiva20_7.Controllers
 {
     public class StartController : Controller
     {
-        private IOmdbRepository omdbRepository;
         private ICmdbRepository cmdbRepository;
 
-        public StartController(IOmdbRepository omdbRepository, ICmdbRepository cmdbRepository)
+        public StartController(ICmdbRepository cmdbRepository)
         {
-            this.omdbRepository = omdbRepository;
             this.cmdbRepository = cmdbRepository;
         }
 
@@ -28,8 +26,8 @@ namespace interaktiva20_7.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = await omdbRepository.GetMovieBySearch("Star");
-            return View(model);
+            var viewModel = await cmdbRepository.GetMovieViewModel();
+            return View(viewModel);
         }
     }
 }
