@@ -1,86 +1,114 @@
 ﻿@model interaktiva20_7.ViewModels.MoviesViewModel
 
-<div id="gtco-features">
-    <div class="gtco-container">
-        <h1 style="text-align: center;">Top Rated Movie</h1>
-        <div class="row">
-            <div class="col-md-4 col-sm-4" style="width:100%;">
-                <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                    <img src="@Model.movies[0].Poster" />
-                    
-                    
-                        <h3>@Html.DisplayFor(item => Model.movies[0].ImdbID)</h3>
-                        <p>@Html.DisplayFor(item => Model.movies[0].numberOfLikes)</p>
-                        <br />
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="gtco-features-2">
-    <div class="gtco-container">
-        <h1 style="text-align: center;">Other Top Rated Movies</h1>
-        
+    <header id="gtco-header" class="gtco-cover" role="banner" style="background-image:url(images/img_movie_poster.jpg);">
+        <div class="overlay"></div>
+        <div class="gtco-container">
             <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                <h2></h2>
-                
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                    @*<img src="https://m.media-amazon.com/images/M/MV5BYmU1NDRjNDgtMzhiMi00NjZmLTg5NGItZDNiZjU5NTU4OTE0XkEyXkFqcGdeQXVyNzkwMjQ5Nz@._V1_SX300.jpg" />*@
-                    <h3>Movie Title</h3>
-                    <p>Plot description.... Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. </p>
-                    <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                    <img src="https://m.media-amazon.com/images/M/MV5BOWZlMjFiYzgtMTUzNC00Y2IzLTk1NTMtZmNhMTczNTk0ODk1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg" />
-                    <h3>Movie Title</h3>
-                    <p>Plot description.... Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. </p>
-                    <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                    @*<img src="https://m.media-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SX300.jpg" />*@
-                    <h3>Movie Title</h3>
-                    <p>Plot description.... Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. </p>
-                    <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="gtco-subscribe">
-    <div class="gtco-container">
-        <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                <h2>Här ska en extra sökruta finnas</h2>
-                <p>Sök efter en film</p>
-            </div>
-        </div>
-        <div class="row animate-box">
-            <div class="col-md-12">
-                <form class="form-inline">
-                    <div class="col-md-4 col-sm-4" style="width:66.6666%;">
-                        <div class="form-group">
-                            <label for="name" class="sr-only">Name</label>
-                            <input type="text" class="form-control" id="search" placeholder="Movie title...">
+                <div class="col-md-12 col-md-offset-0 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>CMDb</h1>
+                            <h2>Cineast Movie Database</h2>
+                            <p>
+                                <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+                                <a href="#" class="btn btn-white btn-outline btn-lg">Download</a>
+                            </p>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
-                        <button type="submit" class="btn btn-default btn-block">Search</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="gtco-features">
+        <div class="gtco-container">
+            <h1 style="text-align: center;">Top Rated Movie</h1>
+            <div class="row">
+                <div class="col-md-4 col-sm-4" style="width:100%;">
+                    <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                        <form asp-action="Index" asp-controller="details" method="get">
+                            <img src="@Model.movies[0].Poster" />
+                            <h3>@Html.DisplayFor(item => Model.movies[0].Title)</h3>
+                            <p>@Html.DisplayFor(item => Model.movies[0].numberOfLikes) Likes</p>
+                            <p>@Html.DisplayFor(item => Model.movies[0].numberOfDislikes) Dislikes</p>
+                            <p>@Html.DisplayFor(item => Model.movies[0].Plot)</p>
+                            <p><button class="btn btn-primary btn-outline" type="submit">More</button></p>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div id="gtco-features-2">
+        <div class="gtco-container">
+            <h1 style="text-align: center;">Other Top Rated Movies</h1>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                    <h2></h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                        <img src="@Model.movies[1].Poster" />
+                        <h3>@Html.DisplayFor(item => Model.movies[1].Title)</h3>
+                        <p>@Html.DisplayFor(item => Model.movies[1].numberOfLikes) Likes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[1].numberOfDislikes) Dislikes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[1].Plot)</p>
+                        <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                        <img src="@Model.movies[2].Poster" />
+                        <h3>@Html.DisplayFor(item => Model.movies[2].Title)</h3>
+                        <p>@Html.DisplayFor(item => Model.movies[2].numberOfLikes) Like</p>
+                        <p>@Html.DisplayFor(item => Model.movies[2].numberOfDislikes) Dislikes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[2].Plot)</p>
+                        <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                        <img src="@Model.movies[3].Poster" />
+                        <h3>@Html.DisplayFor(item => Model.movies[3].Title)</h3>
+                        <p>@Html.DisplayFor(item => Model.movies[3].numberOfLikes) Likes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[3].numberOfDislikes) Dislikes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[3].Plot)</p>
+
+                        <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gtco-subscribe">
+        <div class="gtco-container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                    <h2>Här ska en extra sökruta finnas</h2>
+                    <p>Sök efter en film</p>
+                </div>
+            </div>
+            <div class="row animate-box">
+                <div class="col-md-12">
+                    <form class="form-inline">
+                        <div class="col-md-4 col-sm-4" style="width:66.6666%;">
+                            <div class="form-group">
+                                <label for="name" class="sr-only">Name</label>
+                                <input type="text" class="form-control" id="search" placeholder="Movie title...">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <button type="submit" class="btn btn-default btn-block">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

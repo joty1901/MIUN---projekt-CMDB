@@ -23,7 +23,8 @@ namespace interaktiva20_7.Controllers
         //    var model = await omdbRepository.GetMovieBySearch("Star");
         //    return View(model);
         //}
-
+        [Route("")]
+        [Route("/home")]
         public async Task<IActionResult> Index()
         {
             var viewModel = await cmdbRepository.GetMovieViewModel();

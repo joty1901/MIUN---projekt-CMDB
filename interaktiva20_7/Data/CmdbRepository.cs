@@ -38,7 +38,11 @@ namespace interaktiva20_7.Data
                 for (int i = 0; i < shortResultList.Count; i++)
                 {
                     //TODO: fixa så att den inte skriver över MovieDto
-                    shortResultList[i]= await GetMovieByImdbId(shortResultList[i].ImdbID);
+                    int numberOfLikes = shortResultList[i].numberOfLikes;
+                    int numberOfDislikes = shortResultList[i].numberOfDislikes;
+                    shortResultList[i] = await GetMovieByImdbId(shortResultList[i].ImdbID);
+                    shortResultList[i].numberOfDislikes = numberOfDislikes;
+                    shortResultList[i].numberOfLikes = numberOfLikes;
                 }
                 
 
@@ -97,7 +101,7 @@ namespace interaktiva20_7.Data
 
         public List<MovieDto> ShortenList(IEnumerable<MovieDto> movies)
         {
-            List<MovieDto> temp1List = movies.OrderByDescending(x => x.numberOfLikes).ToList();
+            List<MovieDto> temp1List = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
             List<MovieDto> shortList = new List<MovieDto>();
 
             for (int i = 0; i < 4; i++)
