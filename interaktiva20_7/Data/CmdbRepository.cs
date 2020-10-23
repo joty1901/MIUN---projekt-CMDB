@@ -14,11 +14,13 @@ namespace interaktiva20_7.Data
     {
         private readonly string cmdbBaseUrl;
         private readonly string omdbBaseUrl;
+        public IApiClient apiClient;
 
         public CmdbRepository(IConfiguration configuration)
         {
             cmdbBaseUrl = configuration.GetValue<string>("CMDBApi:BaseUrl");
             omdbBaseUrl = configuration.GetValue<string>("OMDBApi:BaseUrl");
+            apiClient = new ApiClient();
         }
 
         public async Task<MoviesViewModel> GetMovieViewModel()
@@ -27,11 +29,8 @@ namespace interaktiva20_7.Data
             using (HttpClient client = new HttpClient())
             {
                 
-                string endpoint = $"{cmdbBaseUrl}api/movie";
-                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-                response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(data);
+                string cmdbMovies = $"{cmdbBaseUrl}api/movie";
+                var result = await apiClient.GetASync<IEnumerable<MovieDto>>(cmdbMovies);
                 List<MovieDto> shortResultList = new List<MovieDto>();
                 shortResultList = ShortenList(result);
 
@@ -40,7 +39,8 @@ namespace interaktiva20_7.Data
                     //TODO: fixa så att den inte skriver över MovieDto
                     int numberOfLikes = shortResultList[i].numberOfLikes;
                     int numberOfDislikes = shortResultList[i].numberOfDislikes;
-                    shortResultList[i] = await GetMovieByImdbId(shortResultList[i].ImdbID);
+                    string omdbMovies = $"{omdbBaseUrl}/?i={shortResultList[i].ImdbID}&apikey=398aa398";
+                    shortResultList[i] = await apiClient.GetASync<MovieDto>(omdbMovies);
                     shortResultList[i].numberOfDislikes = numberOfDislikes;
                     shortResultList[i].numberOfLikes = numberOfLikes;
                 }
@@ -52,22 +52,12 @@ namespace interaktiva20_7.Data
             }
         }
 
-
-        public async Task<IEnumerable<MovieDto>> GetTopRatedMovies()
+        public async Task<MovieDto> GetMovieByImdbId(string id)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                
-                    string endpoint = $"{cmdbBaseUrl}api/movie";
-                    var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-                    response.EnsureSuccessStatusCode();
-                    var data = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(data);
-
-                    return result;
-             
-            }
+            string endpoint = $"{cmdbBaseUrl}/?apikey=398aa398&i={id}";
+            return await apiClient.GetASync<MovieDto>(endpoint);
         }
+
 
         public async Task<SearchDto> GetMovieBySearch(string searchString)
         {
@@ -84,20 +74,7 @@ namespace interaktiva20_7.Data
 
         }
 
-        public async Task<MovieDto> GetMovieByImdbId(string imdbId)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-
-                string endpoint = $"{omdbBaseUrl}/?i={imdbId}&apikey=398aa398";
-                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-                response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<MovieDto>(data);
-                return result;
-            }
-
-        }
+       
 
         public List<MovieDto> ShortenList(IEnumerable<MovieDto> movies)
         {
