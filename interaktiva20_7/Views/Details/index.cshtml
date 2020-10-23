@@ -1,15 +1,16 @@
-﻿
+﻿@model interaktiva20_7.Models.DTO.MovieDto
+
 <div class="gtco-section">
     <div class="gtco-container">
         <div class="row">
             <div class="col-md-4 animate-box" style="width:300px;">
-                @*<img src="https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" />*@
+                <img src="@Model.Poster" />
             </div>
             <div class="col-md-5 col-md-push-1 animate-box">
 
                 <div class="col-md-4">
-                    <h2>Titel</h2>
-                    <p><span style="font-weight: bold;">Released:</span> 1983</p>
+                    <h2>@Model.Title</h2>
+                    <p><span style="font-weight: bold;">@Model.Plot:</span> 1983</p>
                     <p><span style="font-weight: bold;">Runtime:</span> 2h 34m</p>>
                     <p><span style="font-weight: bold;">Genre:</span> Action</p>
                     <p><span style="font-weight: bold;">Actors:</span> 1983</p>

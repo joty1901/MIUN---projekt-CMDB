@@ -25,6 +25,7 @@ namespace interaktiva20_7.Controllers
         //}
         [Route("")]
         [Route("/home")]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var viewModel = await cmdbRepository.GetMovieViewModel();

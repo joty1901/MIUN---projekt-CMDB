@@ -62,13 +62,13 @@
                 <div class="row">
                     <div class="col-xs-2">
                         <form asp-action="Index" asp-controller="start" method="get">
-                            <div id="gtco-logo"><a href="index.html">CMDb</a></div>
+                          <div id="gtco-logo"><a href="index.html">CMDb</a></div>
                         </form>
                     </div>
                     <div class="col-xs-10 text-right menu-1">
                         <ul>
-                            <li><a href="contact.html">Home</a></li>
-                            <li><a href="contact.html">Search</a></li>
+                            <li>@Html.ActionLink("Hem", "Index", "start")</li>
+                            <li>@Html.ActionLink("Search", "Index", "details")</li>
                         </ul>
                     </div>
                 </div>

@@ -32,7 +32,7 @@
                             <p>@Html.DisplayFor(item => Model.movies[0].numberOfLikes) Likes</p>
                             <p>@Html.DisplayFor(item => Model.movies[0].numberOfDislikes) Dislikes</p>
                             <p>@Html.DisplayFor(item => Model.movies[0].Plot)</p>
-                            <p><button class="btn btn-primary btn-outline" type="submit">More</button></p>
+                            <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = Model.movies[0].ImdbID }, null)</button></p>
                         </form>
                     </div>
                 </div>
