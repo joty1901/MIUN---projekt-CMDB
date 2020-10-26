@@ -18,7 +18,6 @@ namespace interaktiva20_7.Data
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<T>(data);
-
                 return result;
             }
         }

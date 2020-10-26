@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using interaktiva20_7.Data;
+using interaktiva20_7.Test;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +19,8 @@ namespace interaktiva20_7
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<ICmdbRepository, CmdbRepository>();
+            //services.AddScoped<ICmdbRepository, CmdbRepository>();
+            services.AddScoped<ICmdbRepository, CmdbMockRepository>();
 
         }
 

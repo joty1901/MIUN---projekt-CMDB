@@ -26,36 +26,35 @@ namespace interaktiva20_7.Data
         public async Task<MoviesViewModel> GetMovieViewModel()
         {
 
-            using (HttpClient client = new HttpClient())
+        
+            string cmdbMovies = $"{cmdbBaseUrl}/api/movie";
+            var result = await apiClient.GetASync<IEnumerable<MovieDto>>(cmdbMovies);
+            List<MovieDto> shortResultList = new List<MovieDto>();
+            shortResultList = ShortenList(result);
+
+            for (int i = 0; i < shortResultList.Count; i++)
             {
-                
-                string cmdbMovies = $"{cmdbBaseUrl}api/movie";
-                var result = await apiClient.GetASync<IEnumerable<MovieDto>>(cmdbMovies);
-                List<MovieDto> shortResultList = new List<MovieDto>();
-                shortResultList = ShortenList(result);
+                //TODO: fixa så att den inte skriver över MovieDto
+                int numberOfLikes = shortResultList[i].numberOfLikes;
+                int numberOfDislikes = shortResultList[i].numberOfDislikes;
+                string omdbMovies = $"{omdbBaseUrl}/?i={shortResultList[i].ImdbID}&apikey=398aa398";
+                shortResultList[i] = await apiClient.GetASync<MovieDto>(omdbMovies);
+                shortResultList[i].numberOfDislikes = numberOfDislikes;
+                shortResultList[i].numberOfLikes = numberOfLikes;
+            }
 
-                for (int i = 0; i < shortResultList.Count; i++)
-                {
-                    //TODO: fixa så att den inte skriver över MovieDto
-                    int numberOfLikes = shortResultList[i].numberOfLikes;
-                    int numberOfDislikes = shortResultList[i].numberOfDislikes;
-                    string omdbMovies = $"{omdbBaseUrl}/?i={shortResultList[i].ImdbID}&apikey=398aa398";
-                    shortResultList[i] = await apiClient.GetASync<MovieDto>(omdbMovies);
-                    shortResultList[i].numberOfDislikes = numberOfDislikes;
-                    shortResultList[i].numberOfLikes = numberOfLikes;
-                }
-                
-
+            await Task.Delay(0);
                 return new MoviesViewModel(shortResultList);
 
 
-            }
+            
         }
 
-        public async Task<MovieDto> GetMovieByImdbId(string id)
+        public async Task<MovieDto> GetMovieByImdbId(string imdbId)
         {
-            string endpoint = $"{cmdbBaseUrl}/?apikey=398aa398&i={id}";
-            return await apiClient.GetASync<MovieDto>(endpoint);
+            string endpoint = $"{omdbBaseUrl}/?apikey=398aa398&i={imdbId}";
+            var result = await apiClient.GetASync<MovieDto>(endpoint);
+            return result;
         }
 
 
