@@ -160,5 +160,310 @@
     "Production": "20th Century Fox, Scott Free Productions",
     "Website": "N/A",
     "Response": "True"
+  },
+  {
+    "Title": "Star Wars: Episode IV - A New Hope",
+    "Year": "1977",
+    "Rated": "PG",
+    "Released": "25 May 1977",
+    "Runtime": "121 min",
+    "Genre": "Action, Adventure, Fantasy, Sci-Fi",
+    "Director": "George Lucas",
+    "Writer": "George Lucas",
+    "Actors": "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing",
+    "Plot": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
+    "Language": "English",
+    "Country": "USA",
+    "Awards": "Won 6 Oscars. Another 52 wins & 29 nominations.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "92%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "90/100"
+      }
+    ],
+    "Metascore": "90",
+    "imdbRating": "8.6",
+    "imdbVotes": "1,208,256",
+    "imdbID": "tt0076759",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "N/A",
+    "Production": "Lucasfilm Ltd.",
+    "Website": "N/A",
+    "Response": "True"
+  },
+  {
+    "Title": "The Legend of Tarzan",
+    "Year": "2016",
+    "Rated": "PG-13",
+    "Released": "01 Jul 2016",
+    "Runtime": "110 min",
+    "Genre": "Action, Adventure, Drama, Fantasy, Romance",
+    "Director": "David Yates",
+    "Writer": "Adam Cozad (screenplay by), Craig Brewer (screenplay by), Craig Brewer (story by), Adam Cozad (story by), Edgar Rice Burroughs (based on the \"Tarzan\" stories created by)",
+    "Actors": "Alexander Skarsgård, Rory J. Saper, Christian Stevens, Christoph Waltz",
+    "Plot": "Tarzan, having acclimated to life in London, is called back to his former home in the jungle to investigate the activities at a mining encampment.",
+    "Language": "English, Lingala, French",
+    "Country": "UK, Canada, USA, Australia",
+    "Awards": "2 wins & 4 nominations.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMzY3OTI0OTcyMF5BMl5BanBnXkFtZTgwNjkxNTAwOTE@._V1_SX300.jpg",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.2/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "36%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "44/100"
+      }
+    ],
+    "Metascore": "44",
+    "imdbRating": "6.2",
+    "imdbVotes": "161,094",
+    "imdbID": "tt0918940",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "N/A",
+    "Production": "Jerry Weintraub Productions, Beaglepug",
+    "Website": "N/A",
+    "Response": "True"
+  },
+  {
+    "Title": "Star Wars: Episode VI - Return of the Jedi",
+    "Year": "1983",
+    "Rated": "PG",
+    "Released": "25 May 1983",
+    "Runtime": "131 min",
+    "Genre": "Action, Adventure, Fantasy, Sci-Fi",
+    "Director": "Richard Marquand",
+    "Writer": "Lawrence Kasdan (screenplay by), George Lucas (screenplay by), George Lucas (story by)",
+    "Actors": "Mark Hamill, Harrison Ford, Carrie Fisher, Billy Dee Williams",
+    "Plot": "After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor's trap.",
+    "Language": "English",
+    "Country": "USA",
+    "Awards": "Nominated for 4 Oscars. Another 22 wins & 16 nominations.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BOWZlMjFiYzgtMTUzNC00Y2IzLTk1NTMtZmNhMTczNTk0ODk1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.3/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "82%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "58/100"
+      }
+    ],
+    "Metascore": "58",
+    "imdbRating": "8.3",
+    "imdbVotes": "932,430",
+    "imdbID": "tt0086190",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "N/A",
+    "Production": "Lucasfilm Ltd.",
+    "Website": "N/A",
+    "Response": "True"
+  },
+  {
+    "Title": "The Shawshank Redemption",
+    "Year": "1994",
+    "Rated": "R",
+    "Released": "14 Oct 1994",
+    "Runtime": "142 min",
+    "Genre": "Drama",
+    "Director": "Frank Darabont",
+    "Writer": "Stephen King (short story \"Rita Hayworth and Shawshank Redemption\"), Frank Darabont (screenplay)",
+    "Actors": "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
+    "Plot": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "Language": "English",
+    "Country": "USA",
+    "Awards": "Nominated for 7 Oscars. Another 21 wins & 36 nominations.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "9.3/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "91%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "80/100"
+      }
+    ],
+    "Metascore": "80",
+    "imdbRating": "9.3",
+    "imdbVotes": "2,296,430",
+    "imdbID": "tt0111161",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "N/A",
+    "Production": "Columbia Pictures, Castle Rock Entertainment",
+    "Website": "N/A",
+    "Response": "True"
+  },
+  {
+    "Title": "Dumb and Dumber",
+    "Year": "1994",
+    "Rated": "PG-13",
+    "Released": "16 Dec 1994",
+    "Runtime": "107 min",
+    "Genre": "Comedy",
+    "Director": "Peter Farrelly, Bobby Farrelly",
+    "Writer": "Peter Farrelly, Bennett Yellin, Bobby Farrelly",
+    "Actors": "Jim Carrey, Jeff Daniels, Lauren Holly, Mike Starr",
+    "Plot": "After a woman leaves a briefcase at the airport terminal, a dumb limo driver and his dumber friend set out on a hilarious cross-country road trip to Aspen to return it.",
+    "Language": "English, Swedish, German",
+    "Country": "USA",
+    "Awards": "5 wins & 3 nominations.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BZDQwMjNiMTQtY2UwYy00NjhiLTk0ZWEtZWM5ZWMzNGFjNTVkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.3/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "68%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "41/100"
+      }
+    ],
+    "Metascore": "41",
+    "imdbRating": "7.3",
+    "imdbVotes": "348,400",
+    "imdbID": "tt0109686",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "N/A",
+    "Production": "New Line Cinema, Motion Picture Corporation of America",
+    "Website": "N/A",
+    "Response": "True"
+  },
+  {
+    "Title": "Rasmus på luffen",
+    "Year": "1986–",
+    "Rated": "N/A",
+    "Released": "13 Sep 1986",
+    "Runtime": "27 min",
+    "Genre": "N/A",
+    "Director": "N/A",
+    "Writer": "N/A",
+    "Actors": "Allan Edwall, Erik Lindgren, Lars Amble, Stefan Delvin",
+    "Plot": "N/A",
+    "Language": "Swedish",
+    "Country": "Sweden",
+    "Awards": "N/A",
+    "Poster": "N/A",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.7/10"
+      }
+    ],
+    "Metascore": "N/A",
+    "imdbRating": "6.7",
+    "imdbVotes": "222",
+    "imdbID": "tt0258914",
+    "Type": "series",
+    "totalSeasons": "N/A",
+    "Response": "True"
+  },
+  {
+    "Title": "Se7en",
+    "Year": "1995",
+    "Rated": "R",
+    "Released": "22 Sep 1995",
+    "Runtime": "127 min",
+    "Genre": "Crime, Drama, Mystery, Thriller",
+    "Director": "David Fincher",
+    "Writer": "Andrew Kevin Walker",
+    "Actors": "Morgan Freeman, Andrew Kevin Walker, Daniel Zacapa, Brad Pitt",
+    "Plot": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
+    "Language": "English",
+    "Country": "USA",
+    "Awards": "Nominated for 1 Oscar. Another 29 wins & 41 nominations.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "82%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "65/100"
+      }
+    ],
+    "Metascore": "65",
+    "imdbRating": "8.6",
+    "imdbVotes": "1,409,630",
+    "imdbID": "tt0114369",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "N/A",
+    "Production": "New Line Cinema",
+    "Website": "N/A",
+    "Response": "True"
+  },
+  {
+    "Title": "Falling Inn Love",
+    "Year": "2019",
+    "Rated": "TV-PG",
+    "Released": "29 Aug 2019",
+    "Runtime": "98 min",
+    "Genre": "Comedy, Romance",
+    "Director": "Roger Kumble",
+    "Writer": "Elizabeth Hackett, Hilary Galanoy",
+    "Actors": "Christina Milian, Adam Demos, Jeffrey Bowyer-Chapman, Anna Jullienne",
+    "Plot": "When city girl Gabriela spontaneously enters a contest and wins a rustic New Zealand inn, she teams up with bighearted contractor Jake Taylor to fix and flip it.",
+    "Language": "English",
+    "Country": "USA",
+    "Awards": "N/A",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BNWE1NmMzNjUtMDc3NS00ZjBlLTllMTktZTVkMWQzZGVlYzdhXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+    "Ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "65%"
+      }
+    ],
+    "Metascore": "N/A",
+    "imdbRating": "5.6",
+    "imdbVotes": "14,306",
+    "imdbID": "tt9860728",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "N/A",
+    "Production": "N/A",
+    "Website": "N/A",
+    "Response": "True"
   }
 ]
