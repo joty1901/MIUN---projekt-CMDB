@@ -29,7 +29,7 @@ namespace interaktiva20_7.Data
             using (HttpClient client = new HttpClient())
             {
                 
-                string cmdbMovies = $"{cmdbBaseUrl}api/movie";
+                string cmdbMovies = $"{cmdbBaseUrl}/api/movie";
                 var result = await apiClient.GetASync<IEnumerable<MovieDto>>(cmdbMovies);
                 List<MovieDto> shortResultList = new List<MovieDto>();
                 shortResultList = ShortenList(result);
@@ -54,7 +54,7 @@ namespace interaktiva20_7.Data
 
         public async Task<MovieDto> GetMovieByImdbId(string id)
         {
-            string endpoint = $"{cmdbBaseUrl}/?apikey=398aa398&i={id}";
+            string endpoint = $"{omdbBaseUrl}/?apikey=398aa398&i={id}";
             return await apiClient.GetASync<MovieDto>(endpoint);
         }
 

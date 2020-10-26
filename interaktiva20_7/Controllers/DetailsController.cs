@@ -22,6 +22,7 @@ namespace interaktiva20_7.Controllers
         }
 
         [Route("/details")]
+        [HttpGet]
         public async Task<IActionResult> Index(string ID)
         {
             var movieDetails = await cmdbRepository.GetMovieByImdbId(ID);
