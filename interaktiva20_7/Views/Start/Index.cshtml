@@ -54,33 +54,38 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                    <img src="@Model.movies[1].Poster" />
-                    <h3>@Html.DisplayFor(item => Model.movies[1].Title)</h3>
-                    <p>@Html.DisplayFor(item => Model.movies[1].numberOfLikes) Likes</p>
-                    <p>@Html.DisplayFor(item => Model.movies[1].numberOfDislikes) Dislikes</p>
-                    <p>@Html.DisplayFor(item => Model.movies[1].Plot)</p>
-                    <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
+                    <form asp-action="Index" asp-controller="details" method="get">
+                        <img src="@Model.movies[1].Poster" />
+                        <h3>@Html.DisplayFor(item => Model.movies[1].Title)</h3>
+                        <p>@Html.DisplayFor(item => Model.movies[1].numberOfLikes) Likes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[1].numberOfDislikes) Dislikes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[1].Plot)</p>
+                        <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = Model.movies[1].ImdbID }, null)</button></p>
+                    </form>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                    <img src="@Model.movies[2].Poster" />
-                    <h3>@Html.DisplayFor(item => Model.movies[2].Title)</h3>
-                    <p>@Html.DisplayFor(item => Model.movies[2].numberOfLikes) Like</p>
-                    <p>@Html.DisplayFor(item => Model.movies[2].numberOfDislikes) Dislikes</p>
-                    <p>@Html.DisplayFor(item => Model.movies[2].Plot)</p>
-                    <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
+                    <form asp-action="Index" asp-controller="details" method="get">
+                        <img src="@Model.movies[2].Poster" />
+                        <h3>@Html.DisplayFor(item => Model.movies[2].Title)</h3>
+                        <p>@Html.DisplayFor(item => Model.movies[2].numberOfLikes) Likes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[2].numberOfDislikes) Dislikes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[2].Plot)</p>
+                        <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = Model.movies[2].ImdbID }, null)</button></p>
+                    </form>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                    <img src="@Model.movies[3].Poster" />
-                    <h3>@Html.DisplayFor(item => Model.movies[3].Title)</h3>
-                    <p>@Html.DisplayFor(item => Model.movies[3].numberOfLikes) Likes</p>
-                    <p>@Html.DisplayFor(item => Model.movies[3].numberOfDislikes) Dislikes</p>
-                    <p>@Html.DisplayFor(item => Model.movies[3].Plot)</p>
-
-                    <p><a href="#" class="btn btn-primary btn-outline">More </a></p>
+                    <form asp-action="Index" asp-controller="details" method="get">
+                        <img src="@Model.movies[3].Poster" />
+                        <h3>@Html.DisplayFor(item => Model.movies[3].Title)</h3>
+                        <p>@Html.DisplayFor(item => Model.movies[3].numberOfLikes) Likes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[3].numberOfDislikes) Dislikes</p>
+                        <p>@Html.DisplayFor(item => Model.movies[3].Plot)</p>
+                        <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = Model.movies[3].ImdbID }, null)</button></p>
+                    </form>
                 </div>
             </div>
         </div>

@@ -14,5 +14,6 @@ namespace interaktiva20_7.Data
         Task<MovieDto> GetMovieByImdbId(string id);
         Task<MoviesViewModel> GetMovieViewModel();
         List<MovieDto> ShortenList(IEnumerable<MovieDto> movies);
+        Task<List<MovieDto>> GetMoviesBySearchString(string searchstring);
     }
 }

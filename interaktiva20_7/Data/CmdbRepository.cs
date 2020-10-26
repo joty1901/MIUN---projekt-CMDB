@@ -29,22 +29,22 @@ namespace interaktiva20_7.Data
         
             string cmdbMovies = $"{cmdbBaseUrl}/api/movie";
             var result = await apiClient.GetASync<IEnumerable<MovieDto>>(cmdbMovies);
-            List<MovieDto> shortResultList = new List<MovieDto>();
-            shortResultList = ShortenList(result);
+            List<MovieDto> topFourMoviesList = new List<MovieDto>();
+            topFourMoviesList = ShortenList(result);
 
-            for (int i = 0; i < shortResultList.Count; i++)
+            for (int i = 0; i < topFourMoviesList.Count; i++)
             {
                 //TODO: fixa så att den inte skriver över MovieDto
-                int numberOfLikes = shortResultList[i].numberOfLikes;
-                int numberOfDislikes = shortResultList[i].numberOfDislikes;
-                string omdbMovies = $"{omdbBaseUrl}/?i={shortResultList[i].ImdbID}&apikey=398aa398";
-                shortResultList[i] = await apiClient.GetASync<MovieDto>(omdbMovies);
-                shortResultList[i].numberOfDislikes = numberOfDislikes;
-                shortResultList[i].numberOfLikes = numberOfLikes;
+                int numberOfLikes = topFourMoviesList[i].numberOfLikes;
+                int numberOfDislikes = topFourMoviesList[i].numberOfDislikes;
+                string omdbMovies = $"{omdbBaseUrl}/?i={topFourMoviesList[i].ImdbID}&apikey=398aa398";
+                topFourMoviesList[i] = await apiClient.GetASync<MovieDto>(omdbMovies);
+                topFourMoviesList[i].numberOfDislikes = numberOfDislikes;
+                topFourMoviesList[i].numberOfLikes = numberOfLikes;
             }
 
             await Task.Delay(0);
-                return new MoviesViewModel(shortResultList);
+                return new MoviesViewModel(topFourMoviesList);
 
 
             
@@ -78,16 +78,19 @@ namespace interaktiva20_7.Data
         public List<MovieDto> ShortenList(IEnumerable<MovieDto> movies)
         {
             List<MovieDto> temp1List = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
-            List<MovieDto> shortList = new List<MovieDto>();
+            List<MovieDto> topFourMoviesList = new List<MovieDto>();
 
             for (int i = 0; i < 4; i++)
             {
-                shortList.Add(temp1List[i]);
+                topFourMoviesList.Add(temp1List[i]);
             }
 
-            return shortList;
+            return topFourMoviesList;
         }
 
-
+        public Task<List<MovieDto>> GetMoviesBySearchString(string searchstring)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

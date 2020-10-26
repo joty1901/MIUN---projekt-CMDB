@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
 namespace interaktiva20_7.Test
@@ -23,16 +24,36 @@ namespace interaktiva20_7.Test
 
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<List<MovieDto>>(file);
+            var movie = result.Where(m => m.ImdbID.Equals(id)).FirstOrDefault();
+            await Task.Delay(100);
+            return movie;
+
+            //foreach (var movie in result)
+            //{
+            //    if (id == movie.ImdbID)
+            //    {
+            //        await Task.Delay(0);
+            //        return movie;
+            //    }
+            //}
+            //return null;
+        }
+
+        public async Task<List<MovieDto>> GetMoviesBySearchString(string searchstring)
+        {
+            var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
+            var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
+            List<MovieDto> searchresult = new List<MovieDto>();
+
             foreach (var movie in result)
             {
-                if (id == movie.ImdbID)
+                if (movie.Title.Contains(searchstring))
                 {
-                    await Task.Delay(0);
-                    return movie;
+                    searchresult.Add(movie);
                 }
             }
-            return null;
-
+            await Task.Delay(0);
+            return searchresult;
         }
 
         public Task<SearchDto> GetMovieBySearch(string searchString)
@@ -44,36 +65,34 @@ namespace interaktiva20_7.Test
         {
             var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
-            List<MovieDto> shortResultList = new List<MovieDto>();
-            shortResultList = ShortenList(result);
+            List<MovieDto> topFourMoviesList = new List<MovieDto>();
+            topFourMoviesList = ShortenList(result);
 
-            for (int i = 0; i < shortResultList.Count; i++)
+            for (int i = 0; i < topFourMoviesList.Count; i++)
             {
                 //TODO: fixa så att den inte skriver över MovieDto
-                int numberOfLikes = shortResultList[i].numberOfLikes;
-                int numberOfDislikes = shortResultList[i].numberOfDislikes;
-                shortResultList[i] = await GetMovieByImdbId(shortResultList[i].ImdbID);
-                shortResultList[i].numberOfDislikes = numberOfDislikes;
-                shortResultList[i].numberOfLikes = numberOfLikes;
+                int numberOfLikes = topFourMoviesList[i].numberOfLikes;
+                int numberOfDislikes = topFourMoviesList[i].numberOfDislikes;
+                topFourMoviesList[i] = await GetMovieByImdbId(topFourMoviesList[i].ImdbID);
+                topFourMoviesList[i].numberOfDislikes = numberOfDislikes;
+                topFourMoviesList[i].numberOfLikes = numberOfLikes;
             }
 
             await Task.Delay(0);
-            return new MoviesViewModel(shortResultList);
+            return new MoviesViewModel(topFourMoviesList);
         }
 
         public List<MovieDto> ShortenList(IEnumerable<MovieDto> movies)
         {
             List<MovieDto> temp1List = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
-            List<MovieDto> shortList = new List<MovieDto>();
+            List<MovieDto> topFourMoviesList = new List<MovieDto>();
 
             for (int i = 0; i < 4; i++)
             {
-                shortList.Add(temp1List[i]);
+                topFourMoviesList.Add(temp1List[i]);
             }
 
-            return shortList;
+            return topFourMoviesList;
         }
-
-
     }
 }
