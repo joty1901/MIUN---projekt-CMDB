@@ -1,5 +1,7 @@
 ﻿@model MoviesViewModel
-
+@section scripts {
+    <script src="~/js/searchHandler.js"></script>
+}
 <header id="gtco-header" class="gtco-cover" role="banner" style="background-image:url(images/img_movie_poster.jpg);">
     <div class="overlay"></div>
     <div class="gtco-container">
@@ -102,17 +104,17 @@
         </div>
         <div class="row animate-box">
             <div class="col-md-12">
-                <form class="form-inline">
+               
                     <div class="col-md-4 col-sm-4" style="width:66.6666%;">
                         <div class="form-group">
-                            <label for="name" class="sr-only">Name</label>
+                            <label id="nameHolder" for="name" class="sr-only">Name</label>
                             <input type="text" class="form-control" id="search" placeholder="Movie title...">
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                        <button type="submit" class="btn btn-default btn-block">Search</button>
+                        <button id="searchBtn" type="submit" class="btn btn-default btn-block">Search</button>
                     </div>
-                </form>
+               
             </div>
         </div>
     </div>

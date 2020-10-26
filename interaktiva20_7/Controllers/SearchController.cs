@@ -18,9 +18,9 @@ namespace interaktiva20_7.Controllers
 
         [Route("/search")]
         [HttpGet]
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string ID)
         {
-            var searchresult = await cmdbRepository.GetMoviesBySearchString(searchString);
+            var searchresult = await cmdbRepository.GetMoviesBySearchString(ID);
             return View(searchresult);
         }
     }
