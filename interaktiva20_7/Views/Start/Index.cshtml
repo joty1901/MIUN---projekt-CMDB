@@ -102,11 +102,11 @@
         </div>
         <div class="row animate-box">
             <div class="col-md-12">
-                <form class="form-inline">
+                <form class="form-inline" asp-action="search" asp-controller="start">
                     <div class="col-md-4 col-sm-4" style="width:66.6666%;">
                         <div class="form-group">
-                            <label for="name" class="sr-only">Name</label>
-                            <input type="text" class="form-control" id="search" placeholder="Movie title...">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" class="form-control" id="search" value="" placeholder="Movie title...">
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4">
