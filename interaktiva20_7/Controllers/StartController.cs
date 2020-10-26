@@ -32,5 +32,6 @@ namespace interaktiva20_7.Controllers
             var viewModel = await cmdbRepository.GetMovieViewModel();
             return View(viewModel);
         }
+
     }
 }

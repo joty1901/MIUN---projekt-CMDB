@@ -1,5 +1,8 @@
-﻿function renderSearch(search) {
-    var searchString = document.getElementById('search').textContent
-}
+﻿let searchString
 
-document.getElementById('search').addEventListener('click', renderSearch)
+document.querySelector('body').addEventListener('keyup', function updateSearchString() {
+    searchString = document.getElementById('search').value
+})
+document.getElementById('searchBtn').addEventListener('click', function search() {
+    window.location = "/search?id=" + searchString
+})
