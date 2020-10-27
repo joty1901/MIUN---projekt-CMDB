@@ -14,15 +14,6 @@ namespace interaktiva20_7.ViewModels
         public MoviesViewModel(List<MovieDto> movies)
         {
             this.movies = movies;
-
-            //for (int i = 0; i < 4; i++)
-            //{
-
-            //    moviess[i] = omdbRepository.GetMovieByimdbIdh(moviess[i].ImdbID);
-            //}
-
-
         }
-
     }
 }

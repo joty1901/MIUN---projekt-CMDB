@@ -7,7 +7,7 @@ namespace interaktiva20_7.Models.DTO
 {
     public class SearchDto
     {
-        public IEnumerable<MovieDto> Search { get; set; }
+        public List<MovieDto> Search { get; set; }
         public int TotalResults { get; set; }
 
     }
