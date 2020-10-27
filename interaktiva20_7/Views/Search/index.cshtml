@@ -1,4 +1,5 @@
 ﻿@model MoviesViewModel
+
 <div class="gtco-section">
     <div class="gtco-container">
         <div class="row">
@@ -10,15 +11,18 @@
                 <div class="col-md-4">
                     @foreach (var movie in Model.movies)
                     {
-                        <h2>@movie.Title</h2>
-                        <p><pan style="font-weight: bold;">@movie.Plot:</pan> 1983</p>
+                        <form asp-action="Index" asp-controller="Details" method="get">
+                            <img src="@movie.Poster" />
+                            <h2>@movie.Title</h2>
+                            <p><span style="font-weight: bold;">Year: </span>@movie.Year</p>
+                            <p><span style="font-weight: bold;">Plot: </span>@movie.Plot</p>
+                            <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = movie.ImdbID }, null)</button></p>
+                            <br />
+                        </form>
                     }
                 </div>
-          
+
             </div>
         </div>
-       
-        </div>
-
     </div>
 </div>
