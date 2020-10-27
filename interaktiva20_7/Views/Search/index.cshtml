@@ -10,14 +10,16 @@
                 <div class="col-md-4">
                     @foreach (var movie in Model.movies)
                     {
-                        <form asp-action="Index" asp-controller="Details" method="get">
-                            <img src="@movie.Poster" />
-                            <h2>@movie.Title</h2>
-                            <p><span style="font-weight: bold;">Year: </span>@movie.Year</p>
-                            <p><span style="font-weight: bold;">Plot: </span>@movie.Plot</p>
-                            <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = movie.ImdbID })</button></p>
-                            <br />
-                        </form>
+                        <img src="@movie.Poster" />
+                        <h2>@movie.Title</h2>
+                        <p><span style="font-weight: bold;">Year: </span>@movie.Year</p>
+                        <p><span style="font-weight: bold;">Plot: </span>@movie.Plot</p>
+                        <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.movies[0].ImdbID">
+                            <button class="btn btn-primary btn-outline" type="submit">
+                                    More
+                            </button>
+                        </a>
+                        <br />
                     }
                 </div>
             </div>
