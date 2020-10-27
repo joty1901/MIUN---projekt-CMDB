@@ -18,12 +18,12 @@
             <div id="detailsUpper" class="col-md-5 col-md-push-1 animate-box">
 
                 <div>
-                    <h2>Spirited Away</h2>
-                    <p><span style="font-weight: bold;">During her family&#x27;s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.:</span> 1983</p>
-                    <p><span style="font-weight: bold;">Runtime:</span> 2h 34m</p>
-                    <p><span style="font-weight: bold;">Genre:</span> Action</p>
-                    <p><span style="font-weight: bold;">Actors:</span> 1983</p>
-                    <p><span style="font-weight: bold;">Director:</span> John Doe</p>
+                    <h2>@Model.Title</h2>
+                    <p>@Model.Plot</p>
+                    <p><span style="font-weight: bold;">Runtime:</span> @Model.Runtime</p>
+                    <p><span style="font-weight: bold;">Genre:</span> @Model.Genre</p>
+                    <p><span style="font-weight: bold;">Actors:</span> @Model.Actors</p>
+                    <p><span style="font-weight: bold;">Director:</span>@Model.Director</p>
                 </div>
 
                 <!--<div class="gtco-contact-info">
@@ -39,11 +39,7 @@
         </div>
         <div id="detailsLower" class="row">
             <div class="animate-box">
-                <p><span style="font-weight: bold;">Released:</span> 1983</p>
-                <p><span style="font-weight: bold;">Runtime:</span> 2h 34m</p>
-                <p><span style="font-weight: bold;">Genre:</span> Action</p>
-                <p><span style="font-weight: bold;">Actors:</span> 1983</p>
-                <p><span style="font-weight: bold;">Director:</span> John Doe</p>
+                <p><span style="font-weight: bold;">Released:</span> @Model.Released</p>
             </div>
 
         </div>

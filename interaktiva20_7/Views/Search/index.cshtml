@@ -2,28 +2,21 @@
 
 <div class="gtco-section">
     <div class="gtco-container">
-        <div class="row">
-            <div class="col-md-4 animate-box" style="width:300px;">
-                <img src="" />
-            </div>
-            <div class="col-md-5 col-md-push-1 animate-box">
-                <div class="col-md-4">
+      
                     @foreach (var movie in Model.movies)
                     {
+                            <div class="col-md-4 animate-box" id="searchResultBoxes">
                         <form asp-action="Index" asp-controller="Details" method="get">
-                            <img src="@movie.Poster" />
-                            <h2>@movie.Title</h2>
-                            <p><span style="font-weight: bold;">Year: </span>@movie.Year</p>
-                            <p><span style="font-weight: bold;">Plot: </span>@movie.Plot</p>
-                            <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = movie.ImdbID })</button></p>
-                            <br />
+                            <img src="@movie.Poster" onerror="this.src='/images/missingimage.jpg'"/>
+                            <blockquote><b>@movie.Title (@movie.Year)</b></blockquote>
+                            <button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = movie.ImdbID })</button>
+
                         </form>
+                            </div>
                     }
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        
 
 @*<input type="hidden" value="@Model.Observation.Id" asp-for="@Model.Observation.Id" />
 <input id="long" type="hidden" value="@Model.Observation.Longitude" asp-for="@Model.Observation.Longitude" />
