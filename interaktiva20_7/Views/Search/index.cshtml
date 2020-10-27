@@ -1,4 +1,5 @@
-﻿<div class="gtco-section">
+﻿@model MoviesViewModel
+<div class="gtco-section">
     <div class="gtco-container">
         <div class="row">
             <div class="col-md-4 animate-box" style="width:300px;">
@@ -7,25 +8,16 @@
             <div class="col-md-5 col-md-push-1 animate-box">
 
                 <div class="col-md-4">
-                    <h2>Titel</h2>
-                    <p><span style="font-weight: bold;">Released:</span> 1983</p>
-                    <p><span style="font-weight: bold;">Runtime:</span> 2h 34m</p>>
-                    <p><span style="font-weight: bold;">Genre:</span> Action</p>
-                    <p><span style="font-weight: bold;">Actors:</span> 1983</p>
-                    <p><span style="font-weight: bold;">Director:</span> John Doe</p>
+                    @foreach (var movie in Model.movies)
+                    {
+                        <h2>@movie.Title</h2>
+                        <p><pan style="font-weight: bold;">@movie.Plot:</pan> 1983</p>
+                    }
                 </div>
           
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 animate-box" style="width:300px;">
-                <p><span style="font-weight: bold;">Released:</span> 1983</p>
-                <p><span style="font-weight: bold;">Runtime:</span> 2h 34m</p>>
-                <p><span style="font-weight: bold;">Genre:</span> Action</p>
-                <p><span style="font-weight: bold;">Actors:</span> 1983</p>
-                <p><span style="font-weight: bold;">Director:</span> John Doe</p>
-            </div>
-
+       
         </div>
 
     </div>

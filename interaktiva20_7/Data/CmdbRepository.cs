@@ -25,10 +25,8 @@ namespace interaktiva20_7.Data
 
         public async Task<MoviesViewModel> GetMovieViewModel()
         {
-
-        
-            string cmdbMovies = $"{cmdbBaseUrl}/api/movie";
-            var result = await apiClient.GetASync<IEnumerable<MovieDto>>(cmdbMovies);
+            string endpoint = $"{cmdbBaseUrl}/api/movie";
+            var result = await apiClient.GetASync<IEnumerable<MovieDto>>(endpoint);
             List<MovieDto> topFourMoviesList = new List<MovieDto>();
             topFourMoviesList = ShortenList(result);
 
@@ -43,11 +41,16 @@ namespace interaktiva20_7.Data
                 topFourMoviesList[i].numberOfLikes = numberOfLikes;
             }
 
-            await Task.Delay(0);
+                await Task.Delay(0);
                 return new MoviesViewModel(topFourMoviesList);
+        }
 
-
-            
+        public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring)
+        {
+            string endpoint = $"{omdbBaseUrl}/?t={searchstring}&s={searchstring}&apikey=398aa398";
+            var result = await apiClient.GetASync<SearchDto>(endpoint);
+            await Task.Delay(0);
+            return new MoviesViewModel(result.Search);
         }
 
         public async Task<MovieDto> GetMovieByImdbId(string imdbId)
@@ -57,12 +60,10 @@ namespace interaktiva20_7.Data
             return result;
         }
 
-
         public async Task<SearchDto> GetMovieBySearch(string searchString)
         {
             using (HttpClient client = new HttpClient())
             {
-
                 string endpoint = $"{omdbBaseUrl}/?t={searchString}&s={searchString}&apikey=398aa398";
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
@@ -70,10 +71,7 @@ namespace interaktiva20_7.Data
                 var result = JsonConvert.DeserializeObject<SearchDto>(data);
                 return result;
             }
-
         }
-
-       
 
         public List<MovieDto> ShortenList(IEnumerable<MovieDto> movies)
         {
@@ -88,9 +86,18 @@ namespace interaktiva20_7.Data
             return topFourMoviesList;
         }
 
-        public Task<List<MovieDto>> GetMoviesBySearchString(string searchstring)
+        public List<MovieDto> SortListOrderByLikes(IEnumerable<MovieDto> movies)
         {
-            throw new NotImplementedException();
+            List<MovieDto> temp1List = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
+            List<MovieDto> sortedList = new List<MovieDto>();
+
+            for (int i = 0; i < temp1List.Count; i++)
+            {
+                sortedList.Add(temp1List[i]);
+            }
+
+            return sortedList;
         }
+
     }
 }

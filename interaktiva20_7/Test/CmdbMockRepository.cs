@@ -39,7 +39,7 @@ namespace interaktiva20_7.Test
             //return null;
         }
 
-        public async Task<List<MovieDto>> GetMoviesBySearchString(string searchstring)
+        public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring)
         {
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
@@ -53,7 +53,7 @@ namespace interaktiva20_7.Test
                 }
             }
             await Task.Delay(0);
-            return searchresult;
+            return new MoviesViewModel(searchresult);
         }
 
         public Task<SearchDto> GetMovieBySearch(string searchString)
