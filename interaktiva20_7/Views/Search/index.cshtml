@@ -5,14 +5,15 @@
       
                     @foreach (var movie in Model.movies)
                     {
-                            <div class="col-md-4 animate-box" id="searchResultBoxes">
-                        <form asp-action="Index" asp-controller="Details" method="get">
+                        <div class="col-md-4 animate-box" id="searchResultBoxes">
                             <img src="@movie.Poster" onerror="this.src='/images/missingimage.jpg'"/>
                             <blockquote><b>@movie.Title (@movie.Year)</b></blockquote>
-                            <button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = movie.ImdbID })</button>
-
-                        </form>
-                            </div>
+                            <a asp-action="Index" asp-controller="Details" asp-route-id="@movie.ImdbID">
+                                <button class="btn btn-primary btn-outline" type="submit">
+                                    More
+                                </button>
+                            </a>
+                        </div>
                     }
                 </div>
             </div>
