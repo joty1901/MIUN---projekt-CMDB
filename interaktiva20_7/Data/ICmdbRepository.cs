@@ -15,5 +15,6 @@ namespace interaktiva20_7.Data
         Task<MoviesViewModel> GetMovieViewModel();
         List<MovieDto> ShortenList(IEnumerable<MovieDto> movies);
         Task<MoviesViewModel> GetMoviesBySearchString(string searchstring);
+        Task<MovieDto> GetLikesAndDislikes(MovieDto movie);
     }
 }

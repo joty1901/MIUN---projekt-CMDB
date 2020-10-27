@@ -7,8 +7,8 @@
                 <img src="@Model.Poster" />
 
                 <ul id="detailsList">
-                    <li><p>Likes: 0</p></li>
-                    <li><p>Dislikes: 0</p></li>
+                    <li><p>Likes: @Html.DisplayFor(item => Model.numberOfLikes) </p></li>
+                    <li><p>Dislikes: @Html.DisplayFor(item => Model.numberOfDislikes)</p></li>
                 </ul>
                 <ul id="detailsList">
                     <li><a class="icon-thumbs-up"></a></li>
@@ -35,8 +35,6 @@
                         <li class="url"><a href="http://FreeHTML5.co">FreeHTML5.co</a></li>
                     </ul>
                 </div>-->
-
-
             </div>
         </div>
         <div id="detailsLower" class="row">

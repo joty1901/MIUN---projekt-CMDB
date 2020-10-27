@@ -34,7 +34,7 @@
                         <p>@Html.DisplayFor(item => Model.movies[0].numberOfLikes) Likes</p>
                         <p>@Html.DisplayFor(item => Model.movies[0].numberOfDislikes) Dislikes</p>
                         <p>@Html.DisplayFor(item => Model.movies[0].Plot)</p>
-                        <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = Model.movies[0].ImdbID }, null)</button></p>
+                        <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = Model.movies[0].ImdbID })</button></p>
                     </form>
                 </div>
             </div>
@@ -55,7 +55,7 @@
 
         <div class="row">
             @for (int i = 1; i < Model.movies.Count; i++)
-            {
+             {
                 <div class="col-md-4">
                     <div class="feature-center animate-box" data-animate-effect="fadeIn">
                         <form asp-action="Index" asp-controller="details" method="get">
@@ -64,11 +64,11 @@
                             <p>@Html.DisplayFor(item => Model.movies[i].numberOfLikes) Likes</p>
                             <p>@Html.DisplayFor(item => Model.movies[i].numberOfDislikes) Dislikes</p>
                             <p>@Html.DisplayFor(item => Model.movies[i].Plot)</p>
-                            <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = Model.movies[i].ImdbID }, null)</button></p>
+                            <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = Model.movies[i].ImdbID })</button></p>
                         </form>
                     </div>
                 </div>
-            }
+             }
         </div>
     </div>
 </div>

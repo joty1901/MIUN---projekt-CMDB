@@ -41,8 +41,8 @@ namespace interaktiva20_7.Data
                 topFourMoviesList[i].numberOfLikes = numberOfLikes;
             }
 
-                await Task.Delay(0);
-                return new MoviesViewModel(topFourMoviesList);
+            await Task.Delay(0);
+            return new MoviesViewModel(topFourMoviesList);
         }
 
         public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring)
@@ -99,5 +99,9 @@ namespace interaktiva20_7.Data
             return sortedList;
         }
 
+        public Task<MovieDto> GetLikesAndDislikes(MovieDto movie)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

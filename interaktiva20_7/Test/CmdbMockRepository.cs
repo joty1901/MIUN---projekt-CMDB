@@ -21,22 +21,30 @@ namespace interaktiva20_7.Test
         }
         public async Task<MovieDto> GetMovieByImdbId(string id)
         {
-
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<List<MovieDto>>(file);
             var movie = result.Where(m => m.ImdbID.Equals(id)).FirstOrDefault();
+            var movieWithLikes = await GetLikesAndDislikes(movie);
             await Task.Delay(100);
-            return movie;
+            return movieWithLikes;
+        }
 
-            //foreach (var movie in result)
-            //{
-            //    if (id == movie.ImdbID)
-            //    {
-            //        await Task.Delay(0);
-            //        return movie;
-            //    }
-            //}
-            //return null;
+        public async Task<MovieDto> GetLikesAndDislikes(MovieDto movie)
+        {
+            var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
+            var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
+
+            await Task.Delay(20);
+
+            foreach (var m in result)
+            {
+                if (m.ImdbID.Equals(movie.ImdbID))
+                {
+                    movie.numberOfLikes = m.numberOfLikes;
+                    movie.numberOfDislikes = m.numberOfDislikes;
+                }
+            }
+            return movie;
         }
 
         public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring)
@@ -70,7 +78,6 @@ namespace interaktiva20_7.Test
 
             for (int i = 0; i < topFourMoviesList.Count; i++)
             {
-                //TODO: fixa så att den inte skriver över MovieDto
                 int numberOfLikes = topFourMoviesList[i].numberOfLikes;
                 int numberOfDislikes = topFourMoviesList[i].numberOfDislikes;
                 topFourMoviesList[i] = await GetMovieByImdbId(topFourMoviesList[i].ImdbID);

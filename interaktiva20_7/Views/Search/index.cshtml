@@ -7,7 +7,6 @@
                 <img src="" />
             </div>
             <div class="col-md-5 col-md-push-1 animate-box">
-
                 <div class="col-md-4">
                     @foreach (var movie in Model.movies)
                     {
@@ -16,13 +15,35 @@
                             <h2>@movie.Title</h2>
                             <p><span style="font-weight: bold;">Year: </span>@movie.Year</p>
                             <p><span style="font-weight: bold;">Plot: </span>@movie.Plot</p>
-                            <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = movie.ImdbID }, null)</button></p>
+                            <p><button class="btn btn-primary btn-outline" type="submit">@Html.ActionLink("More", "Index", "Details", new { id = movie.ImdbID })</button></p>
                             <br />
                         </form>
                     }
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
+@*<input type="hidden" value="@Model.Observation.Id" asp-for="@Model.Observation.Id" />
+<input id="long" type="hidden" value="@Model.Observation.Longitude" asp-for="@Model.Observation.Longitude" />
+<input id="lat" type="hidden" value="@Model.Observation.Latitude" asp-for="@Model.Observation.Latitude" />
+<input type="hidden" asp-for="@Model.Observation.Person" value="@Model.Observation.Person" />
+<input id="hiddenPlace" type="hidden" asp-for="@Model.Observation.Place" value="@Model.Observation.Place" />
+<input id="hiddenAdministrativeArea" type="hidden" asp-for="@Model.Observation.AdministrativeArea" value="@Model.Observation.AdministrativeArea" />
+<input id="hiddenCountry" type="hidden" asp-for="@Model.Observation.Country" value="@Model.Observation.Country" />
+<input type="hidden" asp-for="@Model.Measurements" value="@Model.Measurements" />
+
+
+<br />
+<h5 style="text-align:center">Välj plats där observation gjordes på kartan nedan</h5>
+<div id="map" style="height: 500px; width:100%; border-radius: 10px; box-shadow: 3px 7px 5px #888888"></div>
+<br />
+<input type="submit" value="Uppdatera observation" class="btn btn-primary" asp-action="PostEditUserObservation" asp-controller="Profile" />
+
+<button type="button" class="btn btn-danger">
+    <a style="color:white" asp-action="DeleteObservation" asp-controller="Profile"
+       asp-route-measurementid="@Model.Measurement.Id" asp-route-observationid="@Model.Observation.Id" asp-route-photoname="@Model.Measurement.PhotoPath">
+        Ta bort observation
+    </a>
+</button>*@ 
