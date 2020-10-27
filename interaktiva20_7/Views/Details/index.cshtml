@@ -7,8 +7,8 @@
                 <img src="@Model.Poster" />
 
                 <ul id="detailsList">
-                    <li><p>Likes: @Html.DisplayFor(item => Model.numberOfLikes) </p></li>
-                    <li><p>Dislikes: @Html.DisplayFor(item => Model.numberOfDislikes)</p></li>
+                    <li><p>Dislikes: @Model.numberOfDislikes</p></li>
+                    <li><p>Likes: @Model.numberOfLikes</p></li>
                 </ul>
                 <ul id="detailsList">
                     <li><a class="icon-thumbs-up"></a></li>
