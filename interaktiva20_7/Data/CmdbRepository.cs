@@ -49,7 +49,6 @@ namespace interaktiva20_7.Data
         {
             string endpoint = $"{omdbBaseUrl}/?t={searchstring}&s={searchstring}&apikey=398aa398";
             var result = await apiClient.GetASync<SearchDto>(endpoint);
-            await Task.Delay(0);
             return new MoviesViewModel(result.Search);
         }
 

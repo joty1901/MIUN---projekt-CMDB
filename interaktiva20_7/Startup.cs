@@ -34,6 +34,7 @@ namespace interaktiva20_7
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
