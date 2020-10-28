@@ -68,8 +68,8 @@
             <div class="gtco-container">
                 <div class="row">
                     <div class="col-xs-2">
-                        <form method="get" action="/home">
-                            <div id="gtco-logo"><a href="index.html">CMDb</a></div>
+                        <form asp-action="Index" asp-controller="start" method="get">
+                          <div id="gtco-logo"><a>@Html.ActionLink("CMDB", "Index", "Start")</a></div>
                         </form>
                     </div>
                     <div class="col-xs-10 text-right menu-1">
