@@ -25,6 +25,8 @@
     <meta name="twitter:url" content="" />
     <meta name="twitter:card" content="" />
 
+    
+
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 
     <!-- Animate.css -->
@@ -66,18 +68,27 @@
             <div class="gtco-container">
                 <div class="row">
                     <div class="col-xs-2">
-                        <form asp-action="Index" asp-controller="start" method="get">
-                          <div id="gtco-logo"><a href="index.html">CMDb</a></div>
+                        <form method="get" action="/home">
+                            <div id="gtco-logo"><a href="index.html">CMDb</a></div>
                         </form>
                     </div>
                     <div class="col-xs-10 text-right menu-1">
-                        <ul>
-                            <li>@Html.ActionLink("Hem", "Index", "start")</li>
-                            <li>@Html.ActionLink("Search", "Index", "details")</li>
+                        <ul id="menuList">
+                            <li><a href="/home">Hem</a></li>
+                            <li>
+                                <div id="menuSearchDiv">
+                                    <input type="text" class="form-control fadeInLeft" id="menuSearchBar" placeholder="Movie title...">
+                                    <div id="menuSearchResult">
+                                        <ul>
+                                            <li><h4>SearchResult</h4></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><button id="menuSearchBtn"><i class="icon-search"></i></button></li>
                         </ul>
                     </div>
                 </div>
-
             </div>
         </nav>
 
@@ -122,7 +133,7 @@
         <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
     </div>
 
-    @RenderSection("scripts", required:false)
+    @RenderSection("scripts", required: false)
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <!-- jQuery Easing -->
@@ -140,6 +151,8 @@
     <script src="js/magnific-popup-options.js"></script>
     <!-- Main -->
     <script src="js/main.js"></script>
+    <!--custom js-->
+    <script src="~/js/searchHandler.js"></script>
 
 </body>
 </html>
