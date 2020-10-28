@@ -16,3 +16,5 @@ document.querySelector('#thumbs-down').addEventListener('click', function () {
     document.querySelector('#thumbs-up').disabled = true
     document.querySelector('#thumbs-down').disabled = true
 })
+
+

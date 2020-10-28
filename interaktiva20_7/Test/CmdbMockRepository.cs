@@ -19,11 +19,11 @@ namespace interaktiva20_7.Test
         {
             basePath = $"{webHostEnvironment.ContentRootPath}\\Test\\";
         }
-        public async Task<MovieDto> GetMovieByImdbId(string id)
+        public async Task<MovieDto> GetMovieByImdbId(string imdbId)
         {
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<List<MovieDto>>(file);
-            var movie = result.Where(m => m.ImdbID.Equals(id)).FirstOrDefault();
+            var movie = result.Where(m => m.ImdbID.Equals(imdbId)).FirstOrDefault();
             var movieWithLikes = await GetLikesAndDislikes(movie);
             await Task.Delay(100);
             return movieWithLikes;
@@ -34,8 +34,6 @@ namespace interaktiva20_7.Test
             var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
 
-            await Task.Delay(20);
-
             foreach (var m in result)
             {
                 if (m.ImdbID.Equals(movie.ImdbID))
@@ -44,6 +42,8 @@ namespace interaktiva20_7.Test
                     movie.numberOfDislikes = m.numberOfDislikes;
                 }
             }
+
+            await Task.Delay(0);
             return movie;
         }
 
@@ -64,17 +64,13 @@ namespace interaktiva20_7.Test
             return new MoviesViewModel(searchresult);
         }
 
-        public Task<SearchDto> GetMovieBySearch(string searchString)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<MoviesViewModel> GetMovieViewModel()
         {
             var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
             List<MovieDto> topFourMoviesList = new List<MovieDto>();
-            topFourMoviesList = ShortenList(result);
+            topFourMoviesList = GetShortList(result);
+            var topFourMoviesWithInfo = await GetMovieInfoFromOmdb(topFourMoviesList);
 
             for (int i = 0; i < topFourMoviesList.Count; i++)
             {
@@ -89,17 +85,30 @@ namespace interaktiva20_7.Test
             return new MoviesViewModel(topFourMoviesList);
         }
 
-        public List<MovieDto> ShortenList(IEnumerable<MovieDto> movies)
+        public List<MovieDto> GetShortList(IEnumerable<MovieDto> movies)
         {
-            List<MovieDto> temp1List = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
+            List<MovieDto> moviesOrderByDescending = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
             List<MovieDto> topFourMoviesList = new List<MovieDto>();
 
             for (int i = 0; i < 4; i++)
             {
-                topFourMoviesList.Add(temp1List[i]);
+                topFourMoviesList.Add(moviesOrderByDescending[i]);
             }
 
             return topFourMoviesList;
+        }
+
+        public async Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> listOfMovies)
+        {
+            for (int i = 0; i < listOfMovies.Count; i++)
+            {
+                int numberOfLikes = listOfMovies[i].numberOfLikes;
+                int numberOfDislikes = listOfMovies[i].numberOfDislikes;
+                listOfMovies[i] = await GetMovieByImdbId(listOfMovies[i].ImdbID);
+                listOfMovies[i].numberOfDislikes = numberOfDislikes;
+                listOfMovies[i].numberOfLikes = numberOfLikes;
+            }
+            return listOfMovies;
         }
     }
 }
