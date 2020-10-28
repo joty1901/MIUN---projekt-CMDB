@@ -19,8 +19,8 @@ namespace interaktiva20_7
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<ICmdbRepository, CmdbRepository>();
-            //services.AddScoped<ICmdbRepository, CmdbMockRepository>();
+            //services.AddScoped<ICmdbRepository, CmdbRepository>();
+            services.AddScoped<ICmdbRepository, CmdbMockRepository>();
 
         }
 

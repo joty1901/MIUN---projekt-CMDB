@@ -3,20 +3,20 @@
 <div class="gtco-section">
     <div class="gtco-container">
       
-                    @foreach (var movie in Model.movies)
-                    {
-                        <div class="col-md-4 animate-box" id="searchResultBoxes">
-                            <img src="@movie.Poster" onerror="this.src='/images/missingimage.jpg'"/>
-                            <blockquote><b>@movie.Title (@movie.Year)</b></blockquote>
-                            <a asp-action="Index" asp-controller="Details" asp-route-id="@movie.ImdbID">
-                                <button class="btn btn-primary btn-outline" type="submit">
-                                    More
-                                </button>
-                            </a>
-                        </div>
-                    }
-                </div>
+        @foreach (var movie in Model.movies)
+        {
+            <div class="col-md-4 animate-box" id="searchResultBoxes">
+                <img src="@movie.Poster" onerror="this.src='/images/missingimage.jpg'"/>
+                <blockquote><b>@movie.Title (@movie.Year)</b></blockquote>
+                <a asp-action="Index" asp-controller="Details" asp-route-id="@movie.ImdbID">
+                    <button class="btn btn-primary btn-outline" type="submit">
+                        More
+                    </button>
+                </a>
             </div>
+        }
+    </div>
+    </div>
         
 
 @*<input type="hidden" value="@Model.Observation.Id" asp-for="@Model.Observation.Id" />
@@ -33,7 +33,7 @@
 <h5 style="text-align:center">Välj plats där observation gjordes på kartan nedan</h5>
 <div id="map" style="height: 500px; width:100%; border-radius: 10px; box-shadow: 3px 7px 5px #888888"></div>
 <br />
-<input type="submit" value="Uppdatera observation" class="btn btn-primary" asp-action="PostEditUserObservation" asp-controller="Profile" />
+<input type="submit" value="Uppdatera observation" class="btn btn-primary" asp-action="PostEditUserObservation" asp-controller=" b " />
 
 <button type="button" class="btn btn-danger">
     <a style="color:white" asp-action="DeleteObservation" asp-controller="Profile"
