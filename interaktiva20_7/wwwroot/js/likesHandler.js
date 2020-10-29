@@ -48,25 +48,3 @@ function checkIfAlreadyVote() {
     }
     return false
 }
-
-
-//document.querySelector('#thumbs-up').addEventListener('click', async function () {
-//    const like = document.getElementById('thumbs-up').value
-//    let result = await sendLikeOrDislike(imdbid, like)
-//    document.querySelector('#likes').textContent = numberOfLikes += result
-//    document.querySelector('#thumbs-up').disabled = true
-//    document.querySelector('#thumbs-down').disabled = true
-////})
-
-//document.querySelector('#thumbs-down').addEventListener('click', function () {
-//    const dislike = document.getElementById('thumbs-down').value
-//    document.querySelector('#dislikes').textContent = numberOfDislikes + result
-//    document.querySelector('#thumbs-up').disabled = true
-//    document.querySelector('#thumbs-down').disabled = true
-//})
-
-
-
-
-
-
