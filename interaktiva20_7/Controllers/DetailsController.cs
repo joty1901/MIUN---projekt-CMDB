@@ -9,6 +9,8 @@ using interaktiva20_7.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace interaktiva20_7.Controllers
 {
@@ -26,7 +28,8 @@ namespace interaktiva20_7.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string ID)
         {
-            var movieDetails = await cmdbRepository.GetMovieByImdbId(ID);
+            var movieList = JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList"));
+            var movieDetails = await cmdbRepository.GetMovieByImdbId(ID, movieList);
             return View(movieDetails);
         }
     }

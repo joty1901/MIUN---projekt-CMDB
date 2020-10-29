@@ -4,18 +4,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace interaktiva20_7.ViewModels
 {
     public class MoviesViewModel
     {
+        public MovieDto SelectedMovie;
+        public List<MovieDto> savedList;
         public List<MovieDto> movies;
         public List<MovieDto> topMovies;
+
+        public List<MovieDto> SessionMovieList { get; set; }
 
         public MoviesViewModel(List<MovieDto> movies)
         {
             this.movies = movies;
             topMovies = GetShortList(movies);
+        }
+
+        public MoviesViewModel(List<MovieDto> movies, List<MovieDto> savedList) { 
+            this.movies = movies;
+            this.savedList = savedList;
+        }
+
+        public MoviesViewModel(List<MovieDto> savedList, MovieDto selectedMovie)
+        {
+            this.savedList = savedList;
+            this.SelectedMovie = selectedMovie;
         }
 
         private List<MovieDto> GetShortList(List<MovieDto> movies)

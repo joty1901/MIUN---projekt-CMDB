@@ -1,4 +1,6 @@
-﻿<!DOCTYPE HTML>
+﻿@model MoviesViewModel
+
+<!DOCTYPE HTML>
 <!--
     Greatness by FreeHTML5.co
     Twitter: http://twitter.com/fh5co
@@ -68,19 +70,31 @@
             <div class="gtco-container">
                 <div class="row">
                     <div class="col-xs-2">
-                        <form asp-action="Index" asp-controller="start" method="get">
-                          <div id="gtco-logo"><a>@Html.ActionLink("CMDB", "Index", "start")</a></div>
-                        </form>
+                        
+                            <div id="gtco-logo"><a>@Html.ActionLink("CMDB", "Index", "start")</a></div>
+                   
                     </div>
                     <div class="col-xs-10 text-right menu-1">
                         <ul id="menuList">
                             <li><a href="/home">Hem</a></li>
                             <li>
                                 <div id="menuSearchDiv">
-                                    <input type="text" class="form-control fadeInLeft" id="menuSearchBar" placeholder="Movie title...">
+                                    <input type="text" class="form-control fadeInLeft" id="menuSearchBar" placeholder="Movie title..." />
                                     <div id="menuSearchResult">
                                         <ul>
+                                            @foreach (var movie in Model.savedList)
+                                            {
+                                                <button id="listButton">
+                                                    <li>
+                                                    
+                                                            <img src="@movie.Poster" onerror=" this.src='images/missingimage.jpg'"/>
+                                                            <blockquote>@movie.Title (@movie.Year)</blockquote>
+                                                    
+                                                    </li>
+                                                </button>
+                                            }
                                             <li><h4>SearchResult</h4></li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -93,7 +107,31 @@
         </nav>
 
         @RenderBody();
+        <div id="gtco-subscribe">
+            <div class="gtco-container">
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                        <h2>Search</h2>
+                        <p>Search for movies</p>
+                    </div>
+                </div>
+                <div class="row animate-box">
+                    <div class="col-md-12">
 
+                        <div class="col-md-4 col-sm-4" style="width:66.6666%;">
+                            <div class="form-group">
+                                <label id="nameHolder" for="name" class="sr-only">Name</label>
+                                <input type="text" class="form-control" id="search" placeholder="Movie title...">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <button id="searchBtn" type="submit" class="btn btn-default btn-block">Search</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <footer id="gtco-footer" role="contentinfo">
             <div class="gtco-container">
                 <div class="row row-pb-md">
@@ -152,9 +190,8 @@
     <script src="js/magnific-popup-options.js"></script>
     
     <script src="js/main.js"></script>
-    <!--custom js-->
-    <script src="~/js/searchHandler.js"></script>
 
+    <script src="js/searchHandler.js"></script>
 
 </body>
 </html>
