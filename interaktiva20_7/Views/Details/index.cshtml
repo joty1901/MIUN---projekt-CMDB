@@ -11,8 +11,8 @@
                     <li><p>Dislikes:<p id="dislikes">@Model.numberOfDislikes</p></p></li>
                 </ul>
                 <ul id="detailsList">
-                    <li><button id="thumbs-up" ><a class="icon-thumbs-up"></a></li></button>
-                    <li><button id="thumbs-down"><a class="icon-thumbs-down"></a></li></button>
+                    <li><button id="thumbs-up" value="like" ><a class="icon-thumbs-up"></a></li></button>
+                    <li><button id="thumbs-down" value="dislike"><a class="icon-thumbs-down"></a></li></button>
                 </ul>
 
 
@@ -42,6 +42,8 @@
         <div id="detailsLower" class="row">
             <div class="animate-box">
                 <p><span style="font-weight: bold;">Released:</span> @Model.Released</p>
+                <input id="hidden-imdbid" type="hidden" value="@Model.ImdbID"/> 
+
             </div>
 
         </div>
