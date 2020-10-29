@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using interaktiva20_7.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using interaktiva20_7.Models.DTO;
 
 namespace interaktiva20_7.Controllers
 {
@@ -30,6 +33,13 @@ namespace interaktiva20_7.Controllers
         public async Task<IActionResult> Index()
         {
             var viewModel = await cmdbRepository.GetMovieViewModel();
+
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
+            {
+                HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.movies));
+            }
+            viewModel.savedList = JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList"));
+
             return View(viewModel);
         }
 

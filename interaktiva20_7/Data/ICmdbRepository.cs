@@ -9,11 +9,11 @@ namespace interaktiva20_7.Data
 {
     public interface ICmdbRepository
     {
-        Task<MovieDto> GetMovieByImdbId(string id);
+        Task<MoviesViewModel> GetMovieByImdbId(string id, List<MovieDto> savedMovies);
         Task<MoviesViewModel> GetMovieViewModel();
         List<MovieDto> GetShortList(IEnumerable<MovieDto> movies);
-        Task<MoviesViewModel> GetMoviesBySearchString(string searchstring);
+        Task<MoviesViewModel> GetMoviesBySearchString(string searchstring, List<MovieDto> movies);
         Task<MovieDto> GetLikesAndDislikes(MovieDto movie);
-        Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> listOfMovies);
+        //Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> listOfMovies);
     }
 }

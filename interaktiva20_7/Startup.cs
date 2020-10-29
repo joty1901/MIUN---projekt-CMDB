@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using interaktiva20_7.Data;
-using interaktiva20_7.Test;
+using interaktiva20_7.Models.DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using static System.Collections.Specialized.BitVector32;
 
 namespace interaktiva20_7
 {
@@ -18,9 +19,15 @@ namespace interaktiva20_7
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews();
             services.AddScoped<ICmdbRepository, CmdbRepository>();
             //services.AddScoped<ICmdbRepository, CmdbMockRepository>();
+
 
         }
 
@@ -35,6 +42,7 @@ namespace interaktiva20_7
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCors();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
@@ -43,6 +51,8 @@ namespace interaktiva20_7
                     pattern: "{controller=Start}/{action=Index}/{id?}"
                     );
             });
+
+            
         }
     }
 }

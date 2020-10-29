@@ -60,7 +60,7 @@
              {
                 <div class="col-md-4">
                     <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                        <img style="max-width: 300px; max-height: 450px;" src="@Model.movies[i].Poster" onerror="this.src = '/images/missingimage.jpg'"/>
+                        <img style="max-width: 300px; max-height: 450px;" src="@Model.topMovies[i].Poster" onerror="this.src = '/images/missingimage.jpg'"/>
                         <h3>@Html.DisplayFor(item => Model.topMovies[i].Title)</h3>
                         <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfLikes) Likes</p>
                         <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfDislikes) Dislikes</p>
@@ -78,28 +78,3 @@
     </div>
 </div>
 
-<div id="gtco-subscribe">
-    <div class="gtco-container">
-        <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                <h2>Search</h2>
-                <p>Search for movies</p>
-            </div>
-        </div>
-        <div class="row animate-box">
-            <div class="col-md-12">
-               
-                    <div class="col-md-4 col-sm-4" style="width:66.6666%;">
-                        <div class="form-group">
-                            <label id="nameHolder" for="name" class="sr-only">Name</label>
-                            <input type="text" class="form-control" id="search" placeholder="Movie title...">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <button id="searchBtn" type="submit" class="btn btn-default btn-block">Search</button>
-                    </div>
-               
-            </div>
-        </div>
-    </div>
-</div>
