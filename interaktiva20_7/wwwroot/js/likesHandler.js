@@ -4,6 +4,7 @@ let numberOfLikes = document.querySelector('#likes').textContent
 let numberOfDislikes = document.querySelector('#dislikes').textContent
 let imdbid = document.getElementById('hidden-imdbid').value
 var imdbIdsArray = new Array("tt0076759", "tt0111161")
+//TODO: Fixa så att listan sparas med hjälp av sessions
 
 document.querySelector('#thumbs-up').addEventListener('click', async function() {
     const like = document.getElementById('thumbs-up').value
@@ -29,13 +30,14 @@ async function sendLike(imdbid, likeOrDislike) {
         if (response.status == 200) {
             newResult++
             imdbIdsArray.push(imdbid)
-            document.querySelector('#thumbs-up').disabled = true
-            document.querySelector('#thumbs-down').disabled = true
+            document.getElementById('thumbs-up').disabled = true
+            document.getElementById('thumbs-down').disabled = true
+            createVoteMessage()
             return newResult
         }
     }
     else {
-        alert('Whoops! Du har redan röstat på den här filmen')
+        alert('Whoops! You have already voted on this movie')
     }   
     return newResult
 }
@@ -47,4 +49,8 @@ function checkIfAlreadyVote() {
         }
     }
     return false
+}
+
+function createVoteMessage() {
+    document.getElementById('messageLike').innerHTML = 'Your vote is registered'
 }

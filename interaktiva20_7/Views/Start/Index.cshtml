@@ -9,10 +9,6 @@
                     <div class="display-tc animate-box" data-animate-effect="fadeIn">
                         <h1>CMDb</h1>
                         <h2>Cineast Movie Database</h2>
-                        <p>
-                            <a href="#" class="btn btn-primary btn-lg">Get Started</a>
-                            <a href="#" class="btn btn-white btn-outline btn-lg">Download</a>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -26,18 +22,17 @@
         <div class="row">
             <div class="col-md-4 col-sm-4" style="width:100%;">
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                        <img src="@Model.topMovies[0].Poster" />
-                        <h3>@Html.DisplayFor(item => Model.topMovies[0].Title)</h3>
-                        <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfLikes) Likes</p>
-                        <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfDislikes) Dislikes</p>
-                        <p>@Html.DisplayFor(item => Model.topMovies[0].Plot)</p>
+                    <img src="@Model.topMovies[0].Poster" />
+                    <h3>@Html.DisplayFor(item => Model.topMovies[0].Title)</h3>
+                    <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfLikes) Likes</p>
+                    <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfDislikes) Dislikes</p>
+                    <p>@Html.DisplayFor(item => Model.topMovies[0].Plot)</p>
 
-                        <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.topMovies[0].ImdbID">
-                            <button class="btn btn-primary btn-outline" type="submit">
-                                   More
-                            </button>
-                        </a>
-                   
+                    <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.topMovies[0].ImdbID">
+                        <button class="btn btn-primary btn-outline" type="submit">
+                                More
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

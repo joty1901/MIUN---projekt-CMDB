@@ -14,11 +14,10 @@
                     <li><button id="thumbs-up" value="like" ><a class="icon-thumbs-up"></a></li></button>
                     <li><button id="thumbs-down" value="dislike"><a class="icon-thumbs-down"></a></li></button>
                 </ul>
-
-
+                <p id="messageLike"></p>
             </div>
-            <div id="detailsUpper" class="col-md-5 col-md-push-1 animate-box">
 
+            <div id="detailsUpper" class="col-md-5 col-md-push-1 animate-box">
                 <div>
                     <h2>@Model.SelectedMovie.Title</h2>
                     <p>@Model.SelectedMovie.Plot</p>
@@ -27,51 +26,12 @@
                     <p><span style="font-weight: bold;">Actors:</span> @Model.SelectedMovie.Actors</p>
                     <p><span style="font-weight: bold;">Director:</span>@Model.SelectedMovie.Director</p>
                 </div>
-
-                <!--<div class="gtco-contact-info">
-                    <h3>Australia Office</h3>
-                    <ul>
-                        <li class="address">198 West 21th Street, <br> Suite 721 New York NY 10016</li>
-                        <li class="phone"><a href="tel://1234567920">+ 1235 2355 98</a></li>
-                        <li class="email"><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-                        <li class="url"><a href="http://FreeHTML5.co">FreeHTML5.co</a></li>
-                    </ul>
-                </div>-->
             </div>
         </div>
         <div id="detailsLower" class="row">
             <div class="animate-box">
                 <p><span style="font-weight: bold;">Released:</span> @Model.SelectedMovie.Released</p>
                 <input id="hidden-imdbid" type="hidden" value="@Model.SelectedMovie.ImdbID"/> 
-
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<div id="gtco-subscribe">
-    <div class="gtco-container">
-        <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                <h2>Här ska en extra sökruta finnas</h2>
-                <p>Sök efter en film</p>
-            </div>
-        </div>
-        <div class="row animate-box">
-            <div class="col-md-12">
-                <form class="form-inline">
-                    <div class="col-md-4 col-sm-4" style="width:66.6666%;">
-                        <div class="form-group">
-                            <label for="name" class="sr-only">Name</label>
-                            <input type="text" class="form-control" id="search" placeholder="Movie title...">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <button type="submit" class="btn btn-default btn-block">Search</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
