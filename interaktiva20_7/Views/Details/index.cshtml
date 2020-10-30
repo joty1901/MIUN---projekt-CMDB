@@ -11,7 +11,7 @@
                     <li><p>Dislikes<p id="dislikes">@Model.SelectedMovie.numberOfDislikes</p></p></li>
                 </ul>
                 <ul id="detailsList">
-                    <li><button id="thumbs-up" value="like" ><a class="icon-thumbs-up"></a></li></button>
+                    <li><button id="thumbs-up" value="like"><a class="icon-thumbs-up"></a></li></button>
                     <li><button id="thumbs-down" value="dislike"><a class="icon-thumbs-down"></a></li></button>
                 </ul>
                 <blockquote id="messageLike"></blockquote>
@@ -20,7 +20,8 @@
             <div id="detailsUpper" class="col-md-5 col-md-push-1 animate-box">
                 <div>
                     <h2>@Model.SelectedMovie.Title</h2>
-                    <p>@Model.SelectedMovie.Plot</p>
+                    <p id="plot">@Model.SelectedMovie.Plot</p>
+                    <a id="se-more" hidden>See more</a>
                     <p><span style="font-weight: bold;">Runtime:</span> @Model.SelectedMovie.Runtime</p>
                     <p><span style="font-weight: bold;">Genre:</span> @Model.SelectedMovie.Genre</p>
                     <p><span style="font-weight: bold;">Actors:</span> @Model.SelectedMovie.Actors</p>
@@ -31,7 +32,7 @@
         <div id="detailsLower" class="row">
             <div class="animate-box">
                 <p><span style="font-weight: bold;">Released:</span> @Model.SelectedMovie.Released</p>
-                <input id="hidden-imdbid" type="hidden" value="@Model.SelectedMovie.ImdbID"/> 
+                <input id="hidden-imdbid" type="hidden" value="@Model.SelectedMovie.ImdbID" />
             </div>
         </div>
     </div>
@@ -39,3 +40,5 @@
 
 <!-- Like JS -->
 <script src="~/js/likesHandler.js"></script>
+<!-- Expand plot JS -->
+<script src="~/js/plotHandler.js"></script>

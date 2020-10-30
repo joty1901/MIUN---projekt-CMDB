@@ -121,7 +121,7 @@ namespace interaktiva20_7.Data
 
         public async Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies)
         {
-            string endpoint = $"{omdbBaseUrl}/?apikey={apiKey}&i={imdbId}";
+            string endpoint = $"{omdbBaseUrl}/?apikey={apiKey}&i={imdbId}&plot=full";
             var result = await apiClient.GetASync<MovieDto>(endpoint);
             var movieWithLikes = await GetLikesAndDislikes(result);
 

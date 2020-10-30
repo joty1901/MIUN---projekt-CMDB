@@ -27,7 +27,7 @@
                     <h3>@Html.DisplayFor(item => Model.topMovies[0].Title)</h3>
                     <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfLikes) Likes</p>
                     <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfDislikes) Dislikes</p>
-                    <p>@Html.DisplayFor(item => Model.topMovies[0].Plot)</p>
+                    <p >@Html.DisplayFor(item => Model.topMovies[0].Plot)</p>
 
                     <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.topMovies[0].ImdbID">
                         <button class="btn btn-primary btn-outline" type="submit">
@@ -59,7 +59,7 @@
                         <h3>@Html.DisplayFor(item => Model.topMovies[i].Title)</h3>
                         <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfLikes) Likes</p>
                         <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfDislikes) Dislikes</p>
-                        <p>@Html.DisplayFor(item => Model.topMovies[i].Plot)</p>
+                        <p >@Html.DisplayFor(item => Model.topMovies[i].Plot)</p>
                     
                         <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.topMovies[i].ImdbID">
                             <button class="btn btn-primary btn-outline" type="button" >
@@ -95,4 +95,3 @@
         }
     </div>
 </div>
-

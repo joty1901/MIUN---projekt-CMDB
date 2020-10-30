@@ -1,9 +1,8 @@
 ﻿
-
 let numberOfLikes = document.querySelector('#likes').textContent
 let numberOfDislikes = document.querySelector('#dislikes').textContent
 let imdbid = document.getElementById('hidden-imdbid').value
-var imdbIdsArray = new Array("tt0076759", "tt0111161")
+var imdbIdsArray = new Array()
 //TODO: Fixa så att listan sparas med hjälp av sessions
 
 document.querySelector('#thumbs-up').addEventListener('click', async function() {
