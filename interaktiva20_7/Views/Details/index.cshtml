@@ -7,14 +7,14 @@
                 <img src="@Model.SelectedMovie.Poster" />
 
                 <ul id="detailsList">
-                    <li><p>Likes:<p id="likes">@Model.SelectedMovie.numberOfLikes</p></p></li>
-                    <li><p>Dislikes:<p id="dislikes">@Model.SelectedMovie.numberOfDislikes</p></p></li>
+                    <li><p>Likes<p id="likes">@Model.SelectedMovie.numberOfLikes</p></p></li>
+                    <li><p>Dislikes<p id="dislikes">@Model.SelectedMovie.numberOfDislikes</p></p></li>
                 </ul>
                 <ul id="detailsList">
                     <li><button id="thumbs-up" value="like" ><a class="icon-thumbs-up"></a></li></button>
                     <li><button id="thumbs-down" value="dislike"><a class="icon-thumbs-down"></a></li></button>
                 </ul>
-                <p id="messageLike"></p>
+                <blockquote id="messageLike"></blockquote>
             </div>
 
             <div id="detailsUpper" class="col-md-5 col-md-push-1 animate-box">

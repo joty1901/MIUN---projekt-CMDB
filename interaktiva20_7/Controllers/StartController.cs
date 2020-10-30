@@ -20,13 +20,6 @@ namespace interaktiva20_7.Controllers
             this.cmdbRepository = cmdbRepository;
         }
 
-        //public async Task<IActionResult> Movies()
-        //{
-        //    //TODO: Ändra namn på metoden Movies till något vettigt.
-        //    //TODO: Ändra en hårdkodade söksträngen som GetMovieBySearch just nu använder.
-        //    var model = await omdbRepository.GetMovieBySearch("Star");
-        //    return View(model);
-        //}
         [Route("")]
         [Route("/home")]
         [HttpGet]
@@ -42,6 +35,5 @@ namespace interaktiva20_7.Controllers
 
             return View(viewModel);
         }
-
     }
 }
