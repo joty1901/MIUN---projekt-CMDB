@@ -19,6 +19,7 @@
 <div id="gtco-features">
     <div class="gtco-container">
         <h1 style="text-align: center;">Top Rated Movie</h1>
+        <h2 style="text-align: center;">Number 1</h2>
         <div class="row">
             <div class="col-md-4 col-sm-4" style="width:100%;">
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
@@ -26,11 +27,11 @@
                     <h3>@Html.DisplayFor(item => Model.topMovies[0].Title)</h3>
                     <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfLikes) Likes</p>
                     <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfDislikes) Dislikes</p>
-                    <p>@Html.DisplayFor(item => Model.topMovies[0].Plot)</p>
+                    <p >@Html.DisplayFor(item => Model.topMovies[0].Plot)</p>
 
                     <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.topMovies[0].ImdbID">
                         <button class="btn btn-primary btn-outline" type="submit">
-                                More
+                            More
                         </button>
                     </a>
                 </div>
@@ -45,8 +46,6 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                <h2></h2>
-
             </div>
         </div>
 
@@ -55,11 +54,12 @@
              {
                 <div class="col-md-4">
                     <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                        <h2>@(i + 1)</h2>
                         <img style="max-width: 300px; max-height: 450px;" src="@Model.topMovies[i].Poster" onerror="this.src = '/images/missingimage.jpg'"/>
                         <h3>@Html.DisplayFor(item => Model.topMovies[i].Title)</h3>
                         <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfLikes) Likes</p>
                         <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfDislikes) Dislikes</p>
-                        <p>@Html.DisplayFor(item => Model.topMovies[i].Plot)</p>
+                        <p >@Html.DisplayFor(item => Model.topMovies[i].Plot)</p>
                     
                         <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.topMovies[i].ImdbID">
                             <button class="btn btn-primary btn-outline" type="button" >
@@ -73,3 +73,25 @@
     </div>
 </div>
 
+<div class="gtco-section">
+    <div class="gtco-container" id="searchResultContaint">
+        <h1 style="text-align: center;">More Rated Movies</h1>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+            </div>
+        </div>
+        @for (int i = 4; i < 14; i++)
+        {
+            <div class="col-md-4 animate-box" id="searchResultBoxes">
+                <img src="@Model.movies[i].Poster" onerror="this.src='/images/missingimage.jpg'" />
+                <blockquote><b>@Model.movies[i].Title (@Model.movies[i].Year)</b></blockquote>
+                <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.movies[i].ImdbID">
+                    <button class="btn btn-primary btn-outline" type="submit">
+                        More
+                    </button>
+                </a>
+            </div>
+        }
+    </div>
+</div>

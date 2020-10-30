@@ -78,21 +78,26 @@ namespace interaktiva20_7.Data
                 movies.Add(tasks[i].Result);
             }
 
-            foreach (var movie in movies)
+            movies = RecoverMissingLikes(movies, cmdbResult);
+
+            return movies;
+        }
+
+        private List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult )
+        {
+            foreach(var movie in movies)
             {
                 foreach (var cmdbMovie in cmdbResult)
                 {
-                    if(movie.ImdbID == cmdbMovie.ImdbID)
+                    if (movie.ImdbID == cmdbMovie.ImdbID)
                     {
                         movie.numberOfLikes = cmdbMovie.numberOfLikes;
                         movie.numberOfDislikes = cmdbMovie.numberOfDislikes;
                     }
                 }
             }
-
             return movies;
         }
-
  
         public List<MovieDto> GetShortList(IEnumerable<MovieDto> movies)
         {
@@ -116,24 +121,11 @@ namespace interaktiva20_7.Data
 
         public async Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies)
         {
-            string endpoint = $"{omdbBaseUrl}/?apikey={apiKey}&i={imdbId}";
+            string endpoint = $"{omdbBaseUrl}/?apikey={apiKey}&i={imdbId}&plot=full";
             var result = await apiClient.GetASync<MovieDto>(endpoint);
             var movieWithLikes = await GetLikesAndDislikes(result);
 
             return new MoviesViewModel(savedMovies, movieWithLikes);
-        }
-
-        public List<MovieDto> SortListOrderByLikes(IEnumerable<MovieDto> movies)
-        {
-            List<MovieDto> moviesOrderBydescending = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
-            List<MovieDto> topFourMoviesList = new List<MovieDto>();
-
-            for (int i = 0; i < moviesOrderBydescending.Count; i++)
-            {
-                topFourMoviesList.Add(moviesOrderBydescending[i]);
-            }
-
-            return topFourMoviesList;
         }
 
         public async Task<MovieDto> GetLikesAndDislikes(MovieDto movie)

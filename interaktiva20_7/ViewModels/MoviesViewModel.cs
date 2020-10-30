@@ -19,7 +19,7 @@ namespace interaktiva20_7.ViewModels
 
         public MoviesViewModel(List<MovieDto> movies)
         {
-            this.movies = movies;
+            this.movies = SortListOrderByLikes(movies);
             topMovies = GetShortList(movies);
         }
 
@@ -45,6 +45,13 @@ namespace interaktiva20_7.ViewModels
             }
 
             return topFourMoviesList;
+        }
+
+        public List<MovieDto> SortListOrderByLikes(IEnumerable<MovieDto> movies)
+        {
+            List<MovieDto> moviesOrderBydescending = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
+
+            return moviesOrderBydescending;
         }
 
     }

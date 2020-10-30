@@ -30,14 +30,27 @@
 
 #detailsList a {
     font-size: 35px;
+    padding: 8px 20px;
+    display: block;
 }
 
 #detailsList p {
     margin-bottom: 0;
 }
 
+#thumbs-up, #thumbs-down{
+    border: none;
+    border-radius: 10px;
+}
 
-#menuList{
+#messageLike {
+    text-align: center;
+    width: 300px;
+    border: 0 !important;
+}
+
+
+#menuList {
     float: right;
 }
 #menuList li{
