@@ -81,19 +81,19 @@
                                 <div id="menuSearchDiv">
                                     <input type="text" class="form-control fadeInLeft" id="menuSearchBar" placeholder="Movie title..." />
                                     <div id="menuSearchResult">
-                                        <ul>
+                                        <ul id="myList">
                                             @foreach (var movie in Model.savedList)
                                             {
-                                                <button id="listButton">
-                                                    <li>
+                                                <li>
+                                                    
                                                     
                                                             <img src="@movie.Poster" onerror=" this.src='images/missingimage.jpg'"/>
                                                             <blockquote>@movie.Title (@movie.Year)</blockquote>
                                                     
-                                                    </li>
-                                                </button>
+                                                   
+                                                </li>
                                             }
-                                            <li><h4>SearchResult</h4></li>
+                                            
 
                                         </ul>
                                     </div>
