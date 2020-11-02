@@ -34,32 +34,7 @@ namespace interaktiva20_7.Data
 
             return new MoviesViewModel(movies);
         }
-
-        //public async Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> listOfMovies)
-        //{
-        //    for (int i = 0; i < listOfMovies.Count; i++)
-        //    {
-        //        int numberOfLikes = listOfMovies[i].numberOfLikes;
-        //        int numberOfDislikes = listOfMovies[i].numberOfDislikes;
-        //        string omdbMovies = $"{omdbBaseUrl}/?i={listOfMovies[i].ImdbID}&apikey={apiKey}";
-        //        listOfMovies[i] = await apiClient.GetASync<MovieDto>(omdbMovies);
-        //        listOfMovies[i].numberOfDislikes = numberOfDislikes;
-        //        listOfMovies[i].numberOfLikes = numberOfLikes;
-        //    }
-        //    return listOfMovies;
-        //}
-
-
-        //public async Task<MoviesViewModel> GetMovieViewModel()
-        //{
-        //    string endpoint = $"{cmdbBaseUrl}/api/movie";
-        //    var cmdbResult = await apiClient.GetASync<IEnumerable<MovieDto>>(endpoint);
-        //    List<MovieDto> movies = new List<MovieDto>();
-        //    movies = await GetMovieInfoFromOmdb(cmdbResult);
-
-        //    return new MoviesViewModel(movies);
-        //}
-
+  
         public async Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> cmdbResult)
         {
             var tasks = new List<Task<MovieDto>>();
@@ -73,6 +48,7 @@ namespace interaktiva20_7.Data
             }
 
             await Task.WhenAll(tasks);
+
             for (int i = 0; i < tasks.Count; i++)
             {
                 movies.Add(tasks[i].Result);
