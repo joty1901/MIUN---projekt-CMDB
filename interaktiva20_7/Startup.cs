@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using interaktiva20_7.Data;
 using interaktiva20_7.Models.DTO;
+using interaktiva20_7.Test;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,8 +26,8 @@ namespace interaktiva20_7
                 options.Cookie.IsEssential = true;
             });
             services.AddControllersWithViews();
-            services.AddScoped<ICmdbRepository, CmdbRepository>();
-            //services.AddScoped<ICmdbRepository, CmdbMockRepository>();
+            //services.AddScoped<ICmdbRepository, CmdbRepository>();
+            services.AddScoped<ICmdbRepository, CmdbMockRepository>();
 
 
         }
