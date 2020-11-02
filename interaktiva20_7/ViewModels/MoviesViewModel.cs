@@ -20,6 +20,7 @@ namespace interaktiva20_7.ViewModels
         public MoviesViewModel(List<MovieDto> movies)
         {
             this.movies = SortListOrderByLikes(movies);
+            this.savedList = movies;
             topMovies = GetShortList(movies);
         }
 
