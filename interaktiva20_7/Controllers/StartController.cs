@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using interaktiva20_7.Models.DTO;
+using System.Text.Encodings.Web;
 
 namespace interaktiva20_7.Controllers
 {
@@ -31,6 +32,7 @@ namespace interaktiva20_7.Controllers
                 var viewModel = await cmdbRepository.GetMovieViewModel();
                 HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.movies));
                 viewModel.savedList = JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList"));
+                //string javaScript = "C:/Users/jonat/source/repos/interaktiva20_7/interaktiva20_7/wwwroot/js/likeHandlerMock.js";
                 return View(viewModel);
             }
             else { 

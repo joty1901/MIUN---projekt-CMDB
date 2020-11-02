@@ -33,7 +33,8 @@ namespace interaktiva20_7.Data
             List<MovieDto> movies;
             movies = await GetMovieInfoFromOmdb(result);
 
-            File.WriteAllText("C:/Users/jonat/source/repos/interaktiva20_7/interaktiva20_7/Test/OmdbMockRepository.json", JsonConvert.SerializeObject(movies));
+            // Nedan kodrad är till för att uppdatera OmdbMockRepo med färsk data
+            //File.WriteAllText("C:/Users/jonat/source/repos/interaktiva20_7/interaktiva20_7/Test/OmdbMockRepository.json", JsonConvert.SerializeObject(movies));
 
             return new MoviesViewModel(movies);
         }
