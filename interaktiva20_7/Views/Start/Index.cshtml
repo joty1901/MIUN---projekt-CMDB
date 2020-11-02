@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-4" style="width:100%;">
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                    <img src="@Model.topMovies[0].Poster" />
+                    <img src="@Model.topMovies[0].Poster" onerror="this.src='images/missingimage.jpg' "/>
                     <h3>@Html.DisplayFor(item => Model.topMovies[0].Title)</h3>
                     <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfLikes) Likes</p>
                     <p>@Html.DisplayFor(item => Model.topMovies[0].numberOfDislikes) Dislikes</p>
@@ -42,7 +42,7 @@
 
 <div id="gtco-features-2">
     <div class="gtco-container">
-        <h1 style="text-align: center;">Other Top Rated Movies</h1>
+        <h1 style="text-align: center;">Top 2-4 Rated Movies</h1>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
@@ -54,7 +54,6 @@
              {
                 <div class="col-md-4">
                     <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                        <h2>@(i + 1)</h2>
                         <img style="max-width: 300px; max-height: 450px;" src="@Model.topMovies[i].Poster" onerror="this.src = '/images/missingimage.jpg'"/>
                         <h3>@Html.DisplayFor(item => Model.topMovies[i].Title)</h3>
                         <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfLikes) Likes</p>
@@ -75,7 +74,7 @@
 
 <div class="gtco-section">
     <div class="gtco-container" id="searchResultContaint">
-        <h1 style="text-align: center;">More Rated Movies</h1>
+        <h1 style="text-align: center;">More High Rated Movies</h1>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">

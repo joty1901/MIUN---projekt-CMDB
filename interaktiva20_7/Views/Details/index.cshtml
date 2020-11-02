@@ -4,7 +4,7 @@
     <div class="gtco-container">
         <div class="row">
             <div id="detailsImg" class="col-md-4 animate-box">
-                <img src="@Model.SelectedMovie.Poster" />
+                <img src="@Model.SelectedMovie.Poster" onerror="this.src = '/images/missingimage.jpg'"/>
 
                 <ul id="detailsList">
                     <li><p>Likes<p id="likes">@Model.SelectedMovie.numberOfLikes</p></p></li>
@@ -26,14 +26,66 @@
                     <p><span style="font-weight: bold;">Genre:</span> @Model.SelectedMovie.Genre</p>
                     <p><span style="font-weight: bold;">Actors:</span> @Model.SelectedMovie.Actors</p>
                     <p><span style="font-weight: bold;">Director:</span>@Model.SelectedMovie.Director</p>
+                    <p><span style="font-weight: bold;">Released:</span> @Model.SelectedMovie.Released</p>
+                    @if (@Model.SelectedMovie.Ratings.Find(x => x.Source == "Internet Movie Database") != null)
+                    {
+                        <p><span><image src="images/imdb.png"></image></span> @Model.SelectedMovie.Ratings.Find(x => x.Source == "Internet Movie Database").Value</p>
+                    }
+                    else
+                    {
+                        <p><span><image src="images/imdb.png"></image></span>Unrated</p>
+                    }
+
+                    @if (@Model.SelectedMovie.Ratings.Find(x => x.Source == "Rotten Tomatoes") != null)
+                    {
+                        <p><span><image src="images/rottentomatoes.png"></image></span> @Model.SelectedMovie.Ratings.Find(x => x.Source == "Rotten Tomatoes").Value</p>
+                    }
+                    else
+                    {
+                        <p><span><image src="images/rottentomatoes.png"></image></span>Unrated</p>
+                    }
+                    @if (@Model.SelectedMovie.Ratings.Find(x => x.Source == "Metacritic") != null)
+                    {
+                        <p><span><image src="images/metacritic.png"></image></span> @Model.SelectedMovie.Ratings.Find(x => x.Source == "Metacritic").Value</p>
+                    }
+                    else
+                    {
+                        <p><span><image src="images/metacritic.png"></image></span>Unrated</p>
+                    }
+                    <input id="hidden-imdbid" type="hidden" value="@Model.SelectedMovie.ImdbID" />
                 </div>
             </div>
         </div>
-        <div id="detailsLower" class="row">
-            <div class="animate-box">
-                <p><span style="font-weight: bold;">Released:</span> @Model.SelectedMovie.Released</p>
-                <input id="hidden-imdbid" type="hidden" value="@Model.SelectedMovie.ImdbID" />
+    </div>
+</div>
+<div id="gtco-features-2">
+    <div class="gtco-container">
+        <h1 style="text-align: center;">Other Top Rated Movies</h1>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
             </div>
+        </div>
+
+        <div class="row">
+            @for (int i = 1; i < Model.topMovies.Count; i++)
+            {
+                <div class="col-md-4">
+                    <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                        <img style="max-width: 300px; max-height: 450px;" src="@Model.topMovies[i].Poster" onerror="this.src = '/images/missingimage.jpg'" />
+                        <h3>@Html.DisplayFor(item => Model.topMovies[i].Title)</h3>
+                        <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfLikes) Likes</p>
+                        <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfDislikes) Dislikes</p>
+                        <p>@Html.DisplayFor(item => Model.topMovies[i].Plot)</p>
+
+                        <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.topMovies[i].ImdbID">
+                            <button class="btn btn-primary btn-outline" type="button">
+                                More
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>

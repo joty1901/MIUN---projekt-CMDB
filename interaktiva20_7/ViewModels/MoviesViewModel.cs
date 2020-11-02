@@ -33,6 +33,7 @@ namespace interaktiva20_7.ViewModels
         {
             this.savedList = savedList;
             this.SelectedMovie = selectedMovie;
+            topMovies = GetShortList(savedList);
         }
 
         private List<MovieDto> GetShortList(List<MovieDto> movies)
