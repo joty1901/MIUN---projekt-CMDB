@@ -9,7 +9,6 @@ namespace interaktiva20_7.Data
 {
     public partial class ApiClient : IApiClient
     {
-
         public async Task<T> GetASync<T>(string endpoint)
         {
             using (HttpClient client = new HttpClient())

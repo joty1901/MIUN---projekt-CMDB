@@ -1,26 +1,31 @@
 ﻿
-let numberOfLikes = document.querySelector('#likes').textContent
-let numberOfDislikes = document.querySelector('#dislikes').textContent
-let imdbid = document.getElementById('hidden-imdbid').value
+let result
+let imdbid
+let numberOfLikes
+let numberOfDislikes
 var imdbIdsArray = new Array()
-//TODO: Fixa så att listan sparas med hjälp av sessions
 
-document.querySelector('#thumbs-up').addEventListener('click', async function() {
-    const like = 'like'
-    let result = await sendLike(imdbid, like)
-    document.querySelector('#likes').textContent = (parseInt(numberOfLikes) + result)
+document.querySelectorAll('#thumbs-up').forEach(selectedMovie => {
+    selectedMovie.addEventListener('click', async function () {
+        const like = 'like'
+        imdbId = selectedMovie.accessKey
+        result = await sendLike(selectedMovie, imdbId, like)
+        UpdateUI(selectedMovie, result, like)
+    })
 })
 
-document.querySelector('#thumbs-down').addEventListener('click', async function () {
-    const dislike = 'dislike'
-    let result = await sendLike(imdbid, dislike)
-    document.querySelector('#dislikes').textContent = (parseInt(numberOfDislikes) + result)
+document.querySelectorAll('#thumbs-down').forEach(selectedMovie => {
+    selectedMovie.addEventListener('click', async function () {
+        const dislike = 'dislike'
+        imdbId = selectedMovie.accessKey
+        result = await sendLike(selectedMovie, imdbId, dislike)
+        UpdateUI(selectedMovie, result, dislike)
+    })
 })
 
-async function sendLike(imdbid, likeOrDislike) {
+async function sendLike(selectedMovie, imdbid, likeOrDislike) {
 
-    let result = 0
-    let alreadyVoted = checkIfAlreadyVote()
+    let alreadyVoted = checkIfAlreadyVote(imdbid)
     let url = `https://localhost:44313/api/${imdbid}/${likeOrDislike}`
 
     if (alreadyVoted == false) {
@@ -29,26 +34,37 @@ async function sendLike(imdbid, likeOrDislike) {
         if (response.status == 200) {
             result++
             imdbIdsArray.push(imdbid)
-            document.getElementById('thumbs-up').disabled = true
-            document.getElementById('thumbs-down').disabled = true
-            document.getElementById('messageLike').innerHTML = 'Your vote is registered'
-            return result
+            return true
         }
         else {
             alert('Something went wrong')
         }
     }
     else {
-        document.getElementById('messageLike').innerHTML = 'Whoops! You have already voted on this movie'
+        alert('Whoops! You have already voted on this movie')
     }   
-    return result   
+    return false   
 }
 
-function checkIfAlreadyVote() {
+function checkIfAlreadyVote(imdbid) {
     for (var i = 0; i < imdbIdsArray.length; i++) {
         if (imdbIdsArray[i] == imdbid) {
             return true
         }
     }
     return false
+}
+
+function UpdateUI(selectedMovie, bool, likeOrDislike) {
+
+    if (bool) {
+        if (likeOrDislike == 'like') {
+            numberOfLikes = selectedMovie.querySelector('a').textContent
+            selectedMovie.querySelector('a').textContent = parseInt(numberOfLikes) + 1
+        }
+        else if (likeOrDislike == 'dislike') {
+            numberOfDislikes = selectedMovie.querySelector('a').textContent
+            selectedMovie.querySelector('a').textContent = parseInt(numberOfDislikes) + 1
+        }
+    }
 }

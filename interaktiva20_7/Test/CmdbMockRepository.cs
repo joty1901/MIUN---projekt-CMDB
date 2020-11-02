@@ -40,6 +40,7 @@ namespace interaktiva20_7.Test
                 {
                     movie.numberOfLikes = m.numberOfLikes;
                     movie.numberOfDislikes = m.numberOfDislikes;
+                    movie.ShortPlot = GetShortPlot(movie.Plot);
                 }
             }
 
@@ -71,7 +72,6 @@ namespace interaktiva20_7.Test
             List<MovieDto> movies;
             movies = await GetMovieInfoFromOmdb(result);
 
-
             await Task.Delay(0);
             return new MoviesViewModel(movies);
         }
@@ -99,13 +99,12 @@ namespace interaktiva20_7.Test
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
             var movies = JsonConvert.DeserializeObject<List<MovieDto>>(file);
 
-           
             movies = RecoverMissingLikes(movies, cmdbResult);
             await Task.Delay(0);
             return movies;
         }
 
-        private List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult)
+        public List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult)
         {
             foreach (var movie in movies)
             {
@@ -119,6 +118,29 @@ namespace interaktiva20_7.Test
                 }
             }
             return movies;
+        }
+
+        public string GetShortPlot(string plot)
+        {
+            if (plot != null)
+            {
+                string shortPlot = "";
+
+                for (int i = 0; i < plot.Length; i++)
+                {
+                    if (i <= 202)
+                    {
+                        shortPlot += plot[i];
+                    }
+                    else
+                    {
+                        return shortPlot += "..."; ;
+                    }
+                }
+
+                return shortPlot += "...";
+            }
+            return null;
         }
     }
 }

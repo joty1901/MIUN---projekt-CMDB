@@ -33,6 +33,8 @@ namespace interaktiva20_7.Data
             List<MovieDto> movies;
             movies = await GetMovieInfoFromOmdb(result);
 
+            File.WriteAllText("C:/Users/jonat/source/repos/interaktiva20_7/interaktiva20_7/Test/OmdbMockRepository.json", JsonConvert.SerializeObject(movies));
+
             return new MoviesViewModel(movies);
         }
 
@@ -48,7 +50,7 @@ namespace interaktiva20_7.Data
 
             for (int i = 0; i < cmdbResult.Count(); i++)
             {
-                string omdbMovies = $"{omdbBaseUrl}/?i={cmdbResult.ElementAt(i).ImdbID}&apikey={apiKey}";
+                string omdbMovies = $"{omdbBaseUrl}/?i={cmdbResult.ElementAt(i).ImdbID}&apikey={apiKey}&plot=full";
                 var task = apiClient.GetASync<MovieDto>(omdbMovies);
                 tasks.Add(task);
             }
@@ -65,7 +67,7 @@ namespace interaktiva20_7.Data
             return movies;
         }
 
-        private List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult )
+        public List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult )
         {
             foreach(var movie in movies)
             {
@@ -75,12 +77,36 @@ namespace interaktiva20_7.Data
                     {
                         movie.numberOfLikes = cmdbMovie.numberOfLikes;
                         movie.numberOfDislikes = cmdbMovie.numberOfDislikes;
+                        movie.ShortPlot = GetShortPlot(movie.Plot);
                     }
                 }
             }
             return movies;
         }
- 
+
+        public string GetShortPlot(string plot)
+        {
+            if (plot != null)
+            {
+                string shortPlot = "";
+
+                for (int i = 0; i < plot.Length; i++)
+                {
+                    if (i <= 202)
+                    {
+                        shortPlot += plot[i];
+                    }
+                    else
+                    {
+                        return shortPlot += "..."; ;
+                    }  
+                }
+
+                return shortPlot += "...";
+            }
+            return null;
+        }
+
         public List<MovieDto> GetShortList(IEnumerable<MovieDto> movies)
         {
             List<MovieDto> moviesOrderByDescending = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
@@ -125,5 +151,6 @@ namespace interaktiva20_7.Data
             }
             return movie;
         }
+       
     }
 }
