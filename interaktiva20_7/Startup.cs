@@ -28,8 +28,6 @@ namespace interaktiva20_7
             services.AddControllersWithViews();
             //services.AddScoped<ICmdbRepository, CmdbRepository>();
             services.AddScoped<ICmdbRepository, CmdbMockRepository>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +50,6 @@ namespace interaktiva20_7
                     pattern: "{controller=Start}/{action=Index}/{id?}"
                     );
             });
-
-            
         }
     }
 }
