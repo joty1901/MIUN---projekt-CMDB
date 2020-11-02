@@ -1,14 +1,11 @@
 ﻿
 const fullPlot = document.getElementById('plot').textContent
-document.queryselector('se-more')
 let shortPlot = fullPlot
 
-
 if (fullPlot.length > 200) {
-    document.querySelectorAll('plot').textContent = truncate(shortPlot, 200)
-}
-else {
-
+    document.querySelector('#see-more').style.display = 'block'
+    let output = truncate(shortPlot, 200)
+    document.getElementById('plot').textContent = output
 }
 
 function truncate(str, n) {

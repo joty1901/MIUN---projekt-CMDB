@@ -79,6 +79,7 @@ namespace interaktiva20_7.Data
             }
 
             await Task.WhenAll(tasks);
+
             for (int i = 0; i < tasks.Count; i++)
             {
                 movies.Add(tasks[i].Result);
