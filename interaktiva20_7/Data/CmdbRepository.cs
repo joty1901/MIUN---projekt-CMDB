@@ -35,6 +35,11 @@ namespace interaktiva20_7.Data
             return new MoviesViewModel(movies);
         }
 
+        public MoviesViewModel GetMovieViewModelFromSession(List<MovieDto> savedList)
+        {
+            return new MoviesViewModel(savedList);
+        }
+
         //public async Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> listOfMovies)
         //{
         //    for (int i = 0; i < listOfMovies.Count; i++)

@@ -25,15 +25,19 @@ namespace interaktiva20_7.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var viewModel = await cmdbRepository.GetMovieViewModel();
 
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
             {
+                var viewModel = await cmdbRepository.GetMovieViewModel();
                 HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.movies));
+                viewModel.savedList = JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList"));
+                return View(viewModel);
             }
-            viewModel.savedList = JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList"));
+            else { 
+                var viewModel = cmdbRepository.GetMovieViewModelFromSession(JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList")));
+                return View(viewModel);
+            }
 
-            return View(viewModel);
         }
     }
 }
