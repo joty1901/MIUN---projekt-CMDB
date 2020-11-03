@@ -9,8 +9,9 @@ document.querySelectorAll('#thumbs-up').forEach(selectedMovie => {
     selectedMovie.addEventListener('click', async function () {
         const like = 'like'
         imdbId = selectedMovie.accessKey
-        result = await sendLike(selectedMovie, imdbId, like)
+        result = await SendVote(selectedMovie, imdbId, like)
         UpdateUI(selectedMovie, result, like)
+        
     })
 })
 
@@ -18,19 +19,19 @@ document.querySelectorAll('#thumbs-down').forEach(selectedMovie => {
     selectedMovie.addEventListener('click', async function () {
         const dislike = 'dislike'
         imdbId = selectedMovie.accessKey
-        result = await sendLike(selectedMovie, imdbId, dislike)
+        result = await SendVote(selectedMovie, imdbId, dislike)
         UpdateUI(selectedMovie, result, dislike)
     })
 })
 
-async function sendLike(selectedMovie, imdbid, likeOrDislike) {
+async function SendVote(selectedMovie, imdbid, likeOrDislike) {
 
-    let alreadyVoted = checkIfAlreadyVote(imdbid)
+    let alreadyVoted = CheckIfAlreadyVoted(imdbid)
     
     if (alreadyVoted == false) {
 
-        result++
         imdbIdsArray.push(imdbid)
+        SaveImdb()
         return true
     }
     else {
@@ -39,10 +40,23 @@ async function sendLike(selectedMovie, imdbid, likeOrDislike) {
     return false
 }
 
-function checkIfAlreadyVote(imdbid) {
-    for (var i = 0; i < imdbIdsArray.length; i++) {
-        if (imdbIdsArray[i] == imdbid) {
-            return true
+function CheckIfAlreadyVoted(imdbid) {
+
+    let savedVotes = JSON.parse(sessionStorage.getItem('savedImdbid'))
+    //savedVotes = getSavedVotes
+
+    if (savedVotes !== null) {
+        for (var i = 0; i < savedVotes.length; i++) {
+            if (savedVotes[i] == imdbid) {
+                return true
+            }
+        }
+    }
+    else {
+        for (var i = 0; i < imdbIdsArray.length; i++) {
+            if (imdbIdsArray[i] == imdbid) {
+                return true
+            }
         }
     }
     return false
@@ -60,4 +74,8 @@ function UpdateUI(selectedMovie, bool, likeOrDislike) {
             selectedMovie.querySelector('a').textContent = parseInt(numberOfDislikes) + 1
         }
     }
+}
+
+function SaveImdb() {
+    sessionStorage.setItem('savedImdbid', JSON.stringify(imdbIdsArray))
 }
