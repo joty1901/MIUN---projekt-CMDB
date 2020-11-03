@@ -26,8 +26,8 @@ namespace interaktiva20_7
                 options.Cookie.IsEssential = true;
             });
             services.AddControllersWithViews();
-            services.AddScoped<ICmdbRepository, CmdbRepository>();
-            //services.AddScoped<ICmdbRepository, CmdbMockRepository>();
+            //services.AddScoped<ICmdbRepository, CmdbRepository>();
+            services.AddScoped<ICmdbRepository, CmdbMockRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
