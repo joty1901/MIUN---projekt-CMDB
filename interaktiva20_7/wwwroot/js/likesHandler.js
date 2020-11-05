@@ -4,7 +4,11 @@ let imdbid
 let numberOfLikes
 let numberOfDislikes
 var imdbIdsArray = new Array()
+if (sessionStorage.getItem('savedImdbid') != null) {
+    imdbIdsArray = JSON.parse(sessionStorage.getItem('savedImdbid'))
+}
 
+//Eventlistener som lyssnar på vilken knapp användare tryckt på.
 document.querySelectorAll('#thumbs-up').forEach(selectedMovie => {
     selectedMovie.addEventListener('click', async function () {
         const like = 'like'
@@ -23,6 +27,7 @@ document.querySelectorAll('#thumbs-down').forEach(selectedMovie => {
     })
 })
 
+//Funktion för att göra själva API-anropet och skicka like/dislike
 async function SendVote(selectedMovie, imdbid, likeOrDislike) {
 
     let alreadyVoted = CheckIfAlreadyVoted(imdbid)
@@ -46,6 +51,7 @@ async function SendVote(selectedMovie, imdbid, likeOrDislike) {
     return false   
 }
 
+//Funktion för att kontrollera om en röst på filmen redan gjorts eller inte.
 function CheckIfAlreadyVoted(imdbid) {
 
     let savedVotes = JSON.parse(sessionStorage.getItem('savedImdbid'))
@@ -81,6 +87,7 @@ function UpdateUI(selectedMovie, bool, likeOrDislike) {
     }
 }
 
+//Funktion för att spara alla imdbId för de filmer som blivit röstade på i sessionen.
 function SaveImdb() {
-    sessionStorage.setItem('savedImdbid', JSON.stringify(imdbIdsArray))
+    window.sessionStorage.setItem('savedImdbid', JSON.stringify(imdbIdsArray))
 }

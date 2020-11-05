@@ -30,8 +30,7 @@ namespace interaktiva20_7.Data
         {
             string endpoint = $"{cmdbBaseUrl}/api/movie";
             var result = await apiClient.GetASync<List<MovieDto>>(endpoint);
-            List<MovieDto> movies;
-            movies = await GetMovieInfoFromOmdb(result);
+            List<MovieDto> movies = await GetMovieInfoFromOmdb(result);
 
             // Nedan kodrad är till för att uppdatera OmdbMockRepo med färsk data
             //File.WriteAllText("C:/Users/jonat/source/repos/interaktiva20_7/interaktiva20_7/Test/OmdbMockRepository.json", JsonConvert.SerializeObject(movies));
@@ -68,7 +67,7 @@ namespace interaktiva20_7.Data
             return movies;
         }
 
-        public List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult )
+        public List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult)
         {
             foreach(var movie in movies)
             {

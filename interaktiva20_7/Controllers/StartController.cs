@@ -32,7 +32,6 @@ namespace interaktiva20_7.Controllers
                 var viewModel = await cmdbRepository.GetMovieViewModel();
                 HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.movies));
                 viewModel.savedList = JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList"));
-                //string javaScript = "C:/Users/jonat/source/repos/interaktiva20_7/interaktiva20_7/wwwroot/js/likeHandlerMock.js";
                 return View(viewModel);
             }
             else { 

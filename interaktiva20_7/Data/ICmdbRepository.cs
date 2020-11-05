@@ -28,6 +28,6 @@ namespace interaktiva20_7.Data
         Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies);
 
         Task<MovieDto> GetLikesAndDislikes(MovieDto movie);
- 
+     
     }
 }
