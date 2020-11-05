@@ -76,9 +76,13 @@ namespace interaktiva20_7.Test
             return new MoviesViewModel(movies);
         }
 
-        public MoviesViewModel GetMovieViewModelFromSession(List<MovieDto> savedList)
+
+        public async Task<MoviesViewModel> GetMovieViewModelFromSession(List<MovieDto> savedList)
         {
-            return new MoviesViewModel(savedList);
+            var cmdbResult = await GetCmdbMovies();
+            var savedListUpdatedWithLikes = RecoverMissingLikes(savedList, cmdbResult);
+            await Task.Delay(0);
+            return new MoviesViewModel(savedListUpdatedWithLikes);
         }
 
         public List<MovieDto> GetShortList(IEnumerable<MovieDto> movies)
@@ -142,5 +146,16 @@ namespace interaktiva20_7.Test
             }
             return null;
         }
+
+        public async Task<List<MovieDto>> GetCmdbMovies()
+        {
+            var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
+            var result = JsonConvert.DeserializeObject<List<MovieDto>>(file);
+            await Task.Delay(0);
+
+            return result;
+        }
+
+      
     }
 }

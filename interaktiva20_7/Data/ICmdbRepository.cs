@@ -13,7 +13,7 @@ namespace interaktiva20_7.Data
         
         Task<MoviesViewModel> GetMovieViewModel();
 
-        MoviesViewModel GetMovieViewModelFromSession(List<MovieDto> savedList);
+       // MoviesViewModel GetMovieViewModelFromSession(List<MovieDto> savedList);
 
         Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> cmdbResult);
 
@@ -28,6 +28,9 @@ namespace interaktiva20_7.Data
         Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies);
 
         Task<MovieDto> GetLikesAndDislikes(MovieDto movie);
-     
+
+        Task<List<MovieDto>> GetCmdbMovies();
+
+        Task<MoviesViewModel> GetMovieViewModelFromSession(List<MovieDto> savedList);
     }
 }

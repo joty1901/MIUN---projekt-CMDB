@@ -38,9 +38,20 @@ namespace interaktiva20_7.Data
             return new MoviesViewModel(movies);
         }
 
-        public MoviesViewModel GetMovieViewModelFromSession(List<MovieDto> savedList)
+        public async Task<List<MovieDto>> GetCmdbMovies()
         {
-            return new MoviesViewModel(savedList);
+            string endpoint = $"{cmdbBaseUrl}/api/movie";
+            var result = await apiClient.GetASync<List<MovieDto>>(endpoint);
+
+            return result;
+        }
+
+
+        public async Task<MoviesViewModel> GetMovieViewModelFromSession(List<MovieDto> savedList)
+        {
+            var cmdbResult = await GetCmdbMovies();
+            var savedListUpdatedWithLikes = RecoverMissingLikes(savedList, cmdbResult);
+            return new MoviesViewModel(savedListUpdatedWithLikes);
         }
 
         public async Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> cmdbResult)
@@ -151,6 +162,6 @@ namespace interaktiva20_7.Data
             }
             return movie;
         }
-       
+
     }
 }

@@ -35,7 +35,7 @@ namespace interaktiva20_7.Controllers
                 return View(viewModel);
             }
             else { 
-                var viewModel = cmdbRepository.GetMovieViewModelFromSession(JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList")));
+                var viewModel = await cmdbRepository.GetMovieViewModelFromSession(JsonConvert.DeserializeObject<List<MovieDto>>(HttpContext.Session.GetString("MovieList")));
                 return View(viewModel);
             }
 
