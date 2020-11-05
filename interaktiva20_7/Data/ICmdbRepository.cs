@@ -13,8 +13,6 @@ namespace interaktiva20_7.Data
         
         Task<MoviesViewModel> GetMovieViewModel();
 
-       // MoviesViewModel GetMovieViewModelFromSession(List<MovieDto> savedList);
-
         Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> cmdbResult);
 
         List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult);
