@@ -70,8 +70,12 @@
                     <div class="feature-center animate-box" data-animate-effect="fadeIn">
                         <img style="max-width: 300px; max-height: 450px;" src="@Model.topMovies[i].Poster" onerror="this.src = '/images/missingimage.jpg'" />
                         <h3>@Html.DisplayFor(item => Model.topMovies[i].Title)</h3>
-                        <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfLikes) Likes</p>
-                        <p>@Html.DisplayFor(item => Model.topMovies[i].numberOfDislikes) Dislikes</p>
+
+                        <ul id="detailsList">
+                            <li><button id="thumbs-up" accesskey="@Model.topMovies[i].ImdbID"><a class="icon-thumbs-up">@Model.topMovies[i].numberOfLikes</a></button></li>
+                            <li><button id="thumbs-down" accesskey="@Model.topMovies[i].ImdbID"><a class="icon-thumbs-down">@Model.topMovies[i].numberOfDislikes</a></button></li>
+                        </ul>
+
                         <p>@Html.DisplayFor(item => Model.topMovies[i].ShortPlot)</p>
 
                         <a asp-action="Index" asp-controller="Details" asp-route-id="@Model.topMovies[i].ImdbID">

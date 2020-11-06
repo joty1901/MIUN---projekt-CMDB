@@ -3,7 +3,6 @@ var menuSearchResult = document.getElementById('menuSearchResult').style;
 menuSearchResult.display = 'inline-block';
 let searchString = '';
 
-
 document.querySelector('body').addEventListener('keyup', function updateSearchString1() {
     searchString = document.getElementById('search').value;
 })
@@ -39,8 +38,6 @@ document.getElementById('menuSearchBar').addEventListener('keyup', function chec
     for (i = 0; i < li.length; i++) {
         blockquote = li[i].getElementsByClassName('movieTitle_test')[0].childNodes[0].nodeValue;
 
-
-
         if (blockquote.toUpperCase().indexOf(filter) > -1 && counter < 5) {
             li[i].style.display = "block !important;"
             li[i].style.cssText = "display:block;"
@@ -50,10 +47,4 @@ document.getElementById('menuSearchBar').addEventListener('keyup', function chec
         }
     }
     list.style.display = 'block'
-
-
-
 } )
-
-
-

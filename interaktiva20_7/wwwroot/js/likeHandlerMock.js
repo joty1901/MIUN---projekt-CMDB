@@ -1,48 +1,41 @@
 ﻿
-let result
-let imdbid
-let numberOfLikes
-let numberOfDislikes
+let likeOrDislike
 var imdbIdsArray = new Array()
 if (sessionStorage.getItem('savedImdbid') != null) {
     imdbIdsArray = JSON.parse(sessionStorage.getItem('savedImdbid'))
 }
 
+//Eventlistener som lyssnar på vilken knapp användare tryckt på.
 document.querySelectorAll('#thumbs-up').forEach(selectedMovie => {
     selectedMovie.addEventListener('click', async function () {
-        const like = 'like'
-        imdbId = selectedMovie.accessKey
-        result = await SendVote(selectedMovie, imdbId, like)
-        UpdateUI(selectedMovie, result, like)
-        
+        likeOrDislike = 'like'
+        await SendVote(selectedMovie, likeOrDislike)
     })
 })
 
 document.querySelectorAll('#thumbs-down').forEach(selectedMovie => {
     selectedMovie.addEventListener('click', async function () {
-        const dislike = 'dislike'
-        imdbId = selectedMovie.accessKey
-        result = await SendVote(selectedMovie, imdbId, dislike)
-        UpdateUI(selectedMovie, result, dislike)
+        likeOrDislike = 'dislike'
+        await SendVote(selectedMovie, likeOrDislike)
     })
 })
 
-async function SendVote(selectedMovie, imdbid, likeOrDislike) {
+//Funktion för att göra själva API-anropet och skicka like/dislike
+async function SendVote(selectedMovie, likeOrDislike) {
 
-    let alreadyVoted = CheckIfAlreadyVoted(imdbid)
-    
+    let alreadyVoted = CheckIfAlreadyVoted(selectedMovie.accessKey)
+
     if (alreadyVoted == false) {
-
-        imdbIdsArray.push(imdbid)
-        SaveImdb()
-        return true
-    }
+            imdbIdsArray.push(selectedMovie.accessKey)
+            SaveImdb()
+            UpdateUI(selectedMovie, likeOrDislike)
+        }
     else {
         alert('Whoops! You have already voted on this movie')
     }
-    return false
 }
 
+//Funktion för att kontrollera om en röst på filmen redan gjorts eller inte.
 function CheckIfAlreadyVoted(imdbid) {
 
     for (var i = 0; i < imdbIdsArray.length; i++) {
@@ -50,24 +43,22 @@ function CheckIfAlreadyVoted(imdbid) {
             return true
         }
     }
-    
     return false
 }
 
-function UpdateUI(selectedMovie, bool, likeOrDislike) {
+function UpdateUI(selectedMovie, likeOrDislike) {
 
-    if (bool) {
-        if (likeOrDislike == 'like') {
-            numberOfLikes = selectedMovie.querySelector('a').textContent
-            selectedMovie.querySelector('a').textContent = parseInt(numberOfLikes) + 1
-        }
-        else if (likeOrDislike == 'dislike') {
-            numberOfDislikes = selectedMovie.querySelector('a').textContent
-            selectedMovie.querySelector('a').textContent = parseInt(numberOfDislikes) + 1
-        }
+    if (likeOrDislike == 'like') {
+        let numberOfLikes = selectedMovie.querySelector('a').textContent
+        selectedMovie.querySelector('a').textContent = parseInt(numberOfLikes) + 1
+    }
+    else if (likeOrDislike == 'dislike') {
+        let numberOfDislikes = selectedMovie.querySelector('a').textContent
+        selectedMovie.querySelector('a').textContent = parseInt(numberOfDislikes) + 1
     }
 }
 
+//Funktion för att spara alla imdbId för de filmer som blivit röstade på i sessionen.
 function SaveImdb() {
     window.sessionStorage.setItem('savedImdbid', JSON.stringify(imdbIdsArray))
 }
