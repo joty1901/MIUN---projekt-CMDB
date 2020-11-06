@@ -4,6 +4,9 @@ let imdbid
 let numberOfLikes
 let numberOfDislikes
 var imdbIdsArray = new Array()
+if (sessionStorage.getItem('savedImdbid') != null) {
+    imdbIdsArray = JSON.parse(sessionStorage.getItem('savedImdbid'))
+}
 
 document.querySelectorAll('#thumbs-up').forEach(selectedMovie => {
     selectedMovie.addEventListener('click', async function () {
@@ -42,23 +45,12 @@ async function SendVote(selectedMovie, imdbid, likeOrDislike) {
 
 function CheckIfAlreadyVoted(imdbid) {
 
-    let savedVotes = JSON.parse(sessionStorage.getItem('savedImdbid'))
-    //savedVotes = getSavedVotes
-
-    if (savedVotes !== null) {
-        for (var i = 0; i < savedVotes.length; i++) {
-            if (savedVotes[i] == imdbid) {
-                return true
-            }
+    for (var i = 0; i < imdbIdsArray.length; i++) {
+        if (imdbIdsArray[i] == imdbid) {
+            return true
         }
     }
-    else {
-        for (var i = 0; i < imdbIdsArray.length; i++) {
-            if (imdbIdsArray[i] == imdbid) {
-                return true
-            }
-        }
-    }
+    
     return false
 }
 
@@ -77,5 +69,5 @@ function UpdateUI(selectedMovie, bool, likeOrDislike) {
 }
 
 function SaveImdb() {
-    sessionStorage.setItem('savedImdbid', JSON.stringify(imdbIdsArray))
+    window.sessionStorage.setItem('savedImdbid', JSON.stringify(imdbIdsArray))
 }

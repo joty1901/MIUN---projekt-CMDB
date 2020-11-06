@@ -16,14 +16,14 @@ namespace interaktiva20_7.Data
         private readonly string cmdbBaseUrl;
         private readonly string omdbBaseUrl;
         private readonly string apiKey;
-        public IApiClient apiClient;
+        private IApiClient apiClient;
 
-        public CmdbRepository(IConfiguration configuration)
+        public CmdbRepository(IConfiguration configuration, IApiClient apiClient)
         {
             cmdbBaseUrl = configuration.GetValue<string>("CMDBApi:BaseUrl");
             omdbBaseUrl = configuration.GetValue<string>("OMDBApi:BaseUrl");
             apiKey = configuration.GetValue<string>("APIKey:key");
-            apiClient = new ApiClient();
+            this.apiClient = apiClient;
         }
 
         public async Task<MoviesViewModel> GetMovieViewModel()

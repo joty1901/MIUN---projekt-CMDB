@@ -27,6 +27,7 @@ namespace interaktiva20_7
             });
             services.AddControllersWithViews();
             services.AddScoped<ICmdbRepository, CmdbRepository>();
+            services.AddScoped<IApiClient, ApiClient>();
             //services.AddScoped<ICmdbRepository, CmdbMockRepository>();
         }
 

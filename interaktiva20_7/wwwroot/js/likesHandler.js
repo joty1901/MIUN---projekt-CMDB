@@ -54,22 +54,12 @@ async function SendVote(selectedMovie, imdbid, likeOrDislike) {
 //Funktion för att kontrollera om en röst på filmen redan gjorts eller inte.
 function CheckIfAlreadyVoted(imdbid) {
 
-    let savedVotes = JSON.parse(sessionStorage.getItem('savedImdbid'))
-
-    if (savedVotes !== null) {
-        for (var i = 0; i < savedVotes.length; i++) {
-            if (savedVotes[i] == imdbid) {
-                return true
-            }
+    for (var i = 0; i < imdbIdsArray.length; i++) {
+        if (imdbIdsArray[i] == imdbid) {
+            return true
         }
     }
-    else {
-        for (var i = 0; i < imdbIdsArray.length; i++) {
-            if (imdbIdsArray[i] == imdbid) {
-                return true
-            }
-        }
-    }
+    
     return false
 }
 
