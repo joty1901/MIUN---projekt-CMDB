@@ -46,6 +46,8 @@ function CheckIfAlreadyVoted(imdbid) {
     return false
 }
 
+
+//Funktion för att uppdatera vyn med nya siffror
 function UpdateUI(selectedMovie, likeOrDislike) {
 
     if (likeOrDislike == 'like') {
