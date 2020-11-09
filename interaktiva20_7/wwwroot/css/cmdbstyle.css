@@ -221,6 +221,11 @@
 #searchContainer {
     text-align: center;
 }
+@media screen and (max-width: 400px) {
+    #searchResultBoxes{
+        margin-left: 25%
+    }
+}
 
 @media screen and (max-width: 992px) {
     #detailsImg {
