@@ -23,7 +23,6 @@ namespace interaktiva20_7.ViewModels
             this.savedList = movies;
             topMovies = GetShortList(movies);
         }
-
         public MoviesViewModel(List<MovieDto> movies, List<MovieDto> savedList) { 
             this.movies = movies;
             this.savedList = savedList;
