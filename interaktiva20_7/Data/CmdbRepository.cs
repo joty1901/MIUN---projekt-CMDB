@@ -26,6 +26,7 @@ namespace interaktiva20_7.Data
             this.apiClient = apiClient;
         }
 
+        #region Returns a viewModel that can be used in the view
         /// <summary>
         /// Metod som hämtar alla filmer från CMDB. Skickar sedan vidare den listan till GetMovieInfoFromOmdb() som kompletterar listan med info från Omdb
         /// </summary>
@@ -41,14 +42,6 @@ namespace interaktiva20_7.Data
             return new MoviesViewModel(movies);
         }
 
-        public async Task<List<MovieDto>> GetCmdbMovies()
-        {
-            string endpoint = $"{cmdbBaseUrl}/api/movie";
-            var cmdbMovies = await apiClient.GetASync<List<MovieDto>>(endpoint);
-
-            return cmdbMovies;
-        }
-
         public async Task<MoviesViewModel> GetMovieViewModelFromSession(List<MovieDto> savedList)
         {
             var cmdbResult = await GetCmdbMovies();
@@ -56,6 +49,24 @@ namespace interaktiva20_7.Data
             return new MoviesViewModel(savedListUpdatedWithLikes);
         }
 
+        public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring, List<MovieDto> movies)
+        {
+            string endpoint = $"{omdbBaseUrl}/?s='{searchstring}'&apikey={apiKey}";
+            var omdbMovies = await apiClient.GetASync<SearchDto>(endpoint);
+            return new MoviesViewModel(omdbMovies.Search, movies);
+        }
+
+        public async Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies)
+        {
+            string endpoint = $"{omdbBaseUrl}/?apikey={apiKey}&i={imdbId}&plot=full";
+            var omdbMovie = await apiClient.GetASync<MovieDto>(endpoint);
+            var movieWithLikes = await GetLikesAndDislikesForSingleMovie(omdbMovie);
+
+            return new MoviesViewModel(savedMovies, movieWithLikes);
+        }
+        #endregion
+
+        #region Get all Movies from API (CMDB and OMDB)
         public async Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> cmdbResult)
         {
             var tasks = new List<Task<MovieDto>>();
@@ -80,22 +91,16 @@ namespace interaktiva20_7.Data
             return movies;
         }
 
-        public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring, List<MovieDto> movies)
+        public async Task<List<MovieDto>> GetCmdbMovies()
         {
-            string endpoint = $"{omdbBaseUrl}/?s='{searchstring}'&apikey={apiKey}";
-            var omdbMovies = await apiClient.GetASync<SearchDto>(endpoint);
-            return new MoviesViewModel(omdbMovies.Search, movies);
+            string endpoint = $"{cmdbBaseUrl}/api/movie";
+            var cmdbMovies = await apiClient.GetASync<List<MovieDto>>(endpoint);
+
+            return cmdbMovies;
         }
+        #endregion
 
-        public async Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies)
-        {
-            string endpoint = $"{omdbBaseUrl}/?apikey={apiKey}&i={imdbId}&plot=full";
-            var omdbMovie = await apiClient.GetASync<MovieDto>(endpoint);
-            var movieWithLikes = await GetLikesAndDislikesForSingleMovie(omdbMovie);
-
-            return new MoviesViewModel(savedMovies, movieWithLikes);
-        }
-
+        #region Get Likes/Dislikes
         public async Task<MovieDto> GetLikesAndDislikesForSingleMovie(MovieDto omdbMovie)
         {
             var cmdbMovies = await GetCmdbMovies();
@@ -126,7 +131,9 @@ namespace interaktiva20_7.Data
             }
             return omdbMovies;
         }
+        #endregion
 
+        #region Short versions
         public string GetShortPlot(string plot)
         {
             if (plot != null)
@@ -162,6 +169,7 @@ namespace interaktiva20_7.Data
 
             return topFourMoviesList;
         }
+        #endregion
 
     }
 }
