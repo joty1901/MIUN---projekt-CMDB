@@ -133,7 +133,7 @@ namespace interaktiva20_7.Data
         }
         #endregion
 
-        #region Short versions
+        #region Get short versions
         public string GetShortPlot(string plot)
         {
             if (plot != null)
