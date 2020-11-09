@@ -1,4 +1,12 @@
-﻿#detailsUpper {
+﻿#headerText h1{
+    font-size: 140px !important;
+}
+
+#headerText h2{
+    font-size: 100px !important;
+}
+
+#detailsUpper {
     padding-left: 0;
     margin-left: -80px;
 }
