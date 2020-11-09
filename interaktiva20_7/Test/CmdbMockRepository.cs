@@ -19,6 +19,9 @@ namespace interaktiva20_7.Test
         {
             basePath = $"{webHostEnvironment.ContentRootPath}\\Test\\";
         }
+
+
+        #region Returns a viewModel that can be used in the view
         public async Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies)
         {
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
@@ -29,24 +32,6 @@ namespace interaktiva20_7.Test
             return new MoviesViewModel(savedMovies, movieWithLikes);
         }
 
-        public async Task<MovieDto> GetLikesAndDislikesForSingleMovie(MovieDto movie)
-        {
-            var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
-            var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
-
-            foreach (var m in result)
-            {
-                if (m.ImdbID.Equals(movie.ImdbID))
-                {
-                    movie.numberOfLikes = m.numberOfLikes;
-                    movie.numberOfDislikes = m.numberOfDislikes;
-                    movie.ShortPlot = GetShortPlot(movie.Plot);
-                }
-            }
-
-            await Task.Delay(0);
-            return movie;
-        }
 
         public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring, List<MovieDto> movies)
         {
@@ -84,20 +69,9 @@ namespace interaktiva20_7.Test
             await Task.Delay(0);
             return new MoviesViewModel(savedListUpdatedWithLikes);
         }
+        #endregion
 
-        public List<MovieDto> GetShortList(IEnumerable<MovieDto> movies)
-        {
-            List<MovieDto> moviesOrderByDescending = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
-            List<MovieDto> topFourMoviesList = new List<MovieDto>();
-
-            for (int i = 0; i < 4; i++)
-            {
-                topFourMoviesList.Add(moviesOrderByDescending[i]);
-            }
-
-            return topFourMoviesList;
-        }
-
+        #region Get all Movies From API (CMDB and OMDB)
         public async Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> cmdbResult)
         {
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
@@ -108,6 +82,37 @@ namespace interaktiva20_7.Test
             return movies;
         }
 
+
+
+        public async Task<List<MovieDto>> GetCmdbMovies()
+        {
+            var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
+            var result = JsonConvert.DeserializeObject<List<MovieDto>>(file);
+            await Task.Delay(0);
+
+            return result;
+        }
+        #endregion
+
+        #region Get Likes/Dislikes
+        public async Task<MovieDto> GetLikesAndDislikesForSingleMovie(MovieDto movie)
+        {
+            var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
+            var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
+
+            foreach (var m in result)
+            {
+                if (m.ImdbID.Equals(movie.ImdbID))
+                {
+                    movie.numberOfLikes = m.numberOfLikes;
+                    movie.numberOfDislikes = m.numberOfDislikes;
+                    movie.ShortPlot = GetShortPlot(movie.Plot);
+                }
+            }
+
+            await Task.Delay(0);
+            return movie;
+        }
         public List<MovieDto> GetAllLikesAndDislikes(List<MovieDto> movies, List<MovieDto> cmdbResult)
         {
             foreach (var movie in movies)
@@ -123,7 +128,9 @@ namespace interaktiva20_7.Test
             }
             return movies;
         }
+        #endregion
 
+        #region Short versions
         public string GetShortPlot(string plot)
         {
             if (plot != null)
@@ -147,15 +154,7 @@ namespace interaktiva20_7.Test
             return null;
         }
 
-        public async Task<List<MovieDto>> GetCmdbMovies()
-        {
-            var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
-            var result = JsonConvert.DeserializeObject<List<MovieDto>>(file);
-            await Task.Delay(0);
+        #endregion
 
-            return result;
-        }
-
-      
     }
 }

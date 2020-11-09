@@ -157,18 +157,6 @@ namespace interaktiva20_7.Data
             return null;
         }
 
-        public List<MovieDto> GetShortList(IEnumerable<MovieDto> movies)
-        {
-            List<MovieDto> moviesOrderByDescending = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
-            List<MovieDto> topFourMoviesList = new List<MovieDto>();
-
-            for (int i = 0; i < 4; i++)
-            {
-                topFourMoviesList.Add(moviesOrderByDescending[i]);
-            }
-
-            return topFourMoviesList;
-        }
         #endregion
 
     }
