@@ -17,17 +17,23 @@ namespace interaktiva20_7.ViewModels
 
         public List<MovieDto> SessionMovieList { get; set; }
 
+
+        //Returns viewModel for StartView
         public MoviesViewModel(List<MovieDto> movies)
         {
             this.movies = SortListOrderByLikes(movies);
             this.savedList = movies;
             topMovies = GetShortList(movies);
         }
+        
+        //Returns viewModel for SearchView
         public MoviesViewModel(List<MovieDto> movies, List<MovieDto> savedList) { 
             this.movies = movies;
             this.savedList = savedList;
         }
 
+
+        //Returns viewModel for DetailsView
         public MoviesViewModel(List<MovieDto> savedList, MovieDto selectedMovie)
         {
             this.savedList = savedList;
@@ -35,6 +41,8 @@ namespace interaktiva20_7.ViewModels
             topMovies = GetShortList(savedList);
         }
 
+
+        #region List Handlers
         private List<MovieDto> GetShortList(List<MovieDto> movies)
         {
             List<MovieDto> moviesOrderByDescending = movies.OrderByDescending(x => (x.numberOfLikes - x.numberOfDislikes)).ToList();
@@ -54,6 +62,6 @@ namespace interaktiva20_7.ViewModels
 
             return moviesOrderBydescending;
         }
-
+        #endregion
     }
 }
