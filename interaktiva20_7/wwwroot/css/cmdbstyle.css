@@ -1,9 +1,18 @@
 ﻿#headerText h1{
-    font-size: 200px;
+    font-size: 200px !important;
 }
 
 #headerText h2{
-    font-size: 40px;
+    font-size: 40px !important;
+}
+
+#ratingsList{
+    display: inline-flex;
+    list-style: none;
+}
+
+#ratingsList li {
+    padding: 0 20px 0 20px;
 }
 
 #detailsUpper {
@@ -33,7 +42,7 @@
 
 #detailsList li {
     display: inline-block;
-    padding: 0 5px;
+    padding: 15px 5px;
     text-align: center;
 }
 

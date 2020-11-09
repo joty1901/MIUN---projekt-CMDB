@@ -4,51 +4,53 @@
     <div class="gtco-container">
         <div class="row">
             <div id="detailsImg" class="col-md-4 animate-box">
-                <img src="@Model.SelectedMovie.Poster" onerror="this.src = '/images/missingimage.jpg'"/>
+                <img src="@Model.selectedMovie.Poster" onerror="this.src = '/images/missingimage.jpg'"/>
 
                 <ul id="detailsList">
-                    <li><button id="thumbs-up" accesskey="@Model.SelectedMovie.ImdbID"><a class="icon-thumbs-up">@Model.SelectedMovie.numberOfLikes</a></button></li>
-                    <li><button id="thumbs-down" accesskey="@Model.SelectedMovie.ImdbID"><a class="icon-thumbs-down">@Model.SelectedMovie.numberOfDislikes</a></button></li>
+                    <li><button id="thumbs-up" accesskey="@Model.selectedMovie.ImdbID"><a class="icon-thumbs-up">@Model.selectedMovie.numberOfLikes</a></button></li>
+                    <li><button id="thumbs-down" accesskey="@Model.selectedMovie.ImdbID"><a class="icon-thumbs-down">@Model.selectedMovie.numberOfDislikes</a></button></li>
                 </ul>
              
             </div>
 
             <div id="detailsUpper" class="col-md-5 col-md-push-1 animate-box">
                 <div>
-                    <h2>@Model.SelectedMovie.Title</h2>
-                    <p id="plot">@Model.SelectedMovie.Plot</p>
+                    <h2>@Model.selectedMovie.Title</h2>
+                    <p id="plot">@Model.selectedMovie.Plot</p>
                     <a id="read-more" hidden>Read more</a>
-                    <p><span style="font-weight: bold;">Runtime:</span> @Model.SelectedMovie.Runtime</p>
-                    <p><span style="font-weight: bold;">Genre:</span> @Model.SelectedMovie.Genre</p>
-                    <p><span style="font-weight: bold;">Actors:</span> @Model.SelectedMovie.Actors</p>
-                    <p><span style="font-weight: bold;">Director:</span>@Model.SelectedMovie.Director</p>
-                    <p><span style="font-weight: bold;">Released:</span> @Model.SelectedMovie.Released</p>
-                    @if (@Model.SelectedMovie.Ratings.Find(x => x.Source == "Internet Movie Database") != null)
-                    {
-                        <p><span><image src="images/imdb.png"></image></span> @Model.SelectedMovie.Ratings.Find(x => x.Source == "Internet Movie Database").Value</p>
-                    }
-                    else
-                    {
-                        <p><span><image src="images/imdb.png"></image></span>Unrated</p>
-                    }
+                    <p><span style="font-weight: bold;">Runtime:</span> @Model.selectedMovie.Runtime</p>
+                    <p><span style="font-weight: bold;">Genre:</span> @Model.selectedMovie.Genre</p>
+                    <p><span style="font-weight: bold;">Actors:</span> @Model.selectedMovie.Actors</p>
+                    <p><span style="font-weight: bold;">Director:</span>@Model.selectedMovie.Director</p>
+                    <p><span style="font-weight: bold;">Released:</span> @Model.selectedMovie.Released</p>
+                    <ul id="ratingsList">
+                        @if (@Model.selectedMovie.Ratings.Find(x => x.Source == "Internet Movie Database") != null)
+                        {
+                            <li><p><span><image src="images/imdb.png"></image></span> @Model.selectedMovie.Ratings.Find(x => x.Source == "Internet Movie Database").Value</p></li>
+                        }
+                        else
+                        {
+                            <li><p><span><image src="images/imdb.png"></image></span>Unrated</p></li>
+                        }
 
-                    @if (@Model.SelectedMovie.Ratings.Find(x => x.Source == "Rotten Tomatoes") != null)
-                    {
-                        <p><span><image src="images/rottentomatoes.png"></image></span> @Model.SelectedMovie.Ratings.Find(x => x.Source == "Rotten Tomatoes").Value</p>
-                    }
-                    else
-                    {
-                        <p><span><image src="images/rottentomatoes.png"></image></span>Unrated</p>
-                    }
-                    @if (@Model.SelectedMovie.Ratings.Find(x => x.Source == "Metacritic") != null)
-                    {
-                        <p><span><image src="images/metacritic.png"></image></span> @Model.SelectedMovie.Ratings.Find(x => x.Source == "Metacritic").Value</p>
-                    }
-                    else
-                    {
-                        <p><span><image src="images/metacritic.png"></image></span>Unrated</p>
-                    }
-                    <input id="hidden-imdbid" type="hidden" value="@Model.SelectedMovie.ImdbID" />
+                        @if (@Model.selectedMovie.Ratings.Find(x => x.Source == "Rotten Tomatoes") != null)
+                        {
+                            <li><p><span><image src="images/rottentomatoes.png"></image></span> @Model.selectedMovie.Ratings.Find(x => x.Source == "Rotten Tomatoes").Value</p></li>
+                        }
+                        else
+                        {
+                            <li><p><span><image src="images/rottentomatoes.png"></image></span>Unrated</p></li>
+                        }
+                        @if (@Model.selectedMovie.Ratings.Find(x => x.Source == "Metacritic") != null)
+                        {
+                            <li><p><span><image src="images/metacritic.png"></image></span> @Model.selectedMovie.Ratings.Find(x => x.Source == "Metacritic").Value</p></li>
+                        }
+                        else
+                        {
+                            <li><p><span><image src="images/metacritic.png"></image></span>Unrated</p></li>
+                        }
+                    </ul>
+                    <input id="hidden-imdbid" type="hidden" value="@Model.selectedMovie.ImdbID" />
                 </div>
             </div>
         </div>
