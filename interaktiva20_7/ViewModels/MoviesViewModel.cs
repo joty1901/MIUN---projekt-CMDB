@@ -10,7 +10,7 @@ namespace interaktiva20_7.ViewModels
 {
     public class MoviesViewModel
     {
-        public MovieDto SelectedMovie;
+        public MovieDto selectedMovie;
         public List<MovieDto> savedList;
         public List<MovieDto> movies;
         public List<MovieDto> topMovies;
@@ -31,7 +31,7 @@ namespace interaktiva20_7.ViewModels
         public MoviesViewModel(List<MovieDto> savedList, MovieDto selectedMovie)
         {
             this.savedList = savedList;
-            this.SelectedMovie = selectedMovie;
+            this.selectedMovie = selectedMovie;
             topMovies = GetShortList(savedList);
         }
 
