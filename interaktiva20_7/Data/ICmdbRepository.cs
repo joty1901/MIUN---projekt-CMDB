@@ -19,8 +19,6 @@ namespace interaktiva20_7.Data
 
         string GetShortPlot(string plot);
 
-        List<MovieDto> GetShortList(IEnumerable<MovieDto> movies);
-
         Task<MoviesViewModel> GetMoviesBySearchString(string searchstring, List<MovieDto> movies);
 
         Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies);
