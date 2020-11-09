@@ -15,7 +15,7 @@ namespace interaktiva20_7.Data
 
         Task<List<MovieDto>> GetMovieInfoFromOmdb(List<MovieDto> cmdbResult);
 
-        List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult);
+        List<MovieDto> GetAllLikesAndDislikes(List<MovieDto> movies, List<MovieDto> cmdbResult);
 
         string GetShortPlot(string plot);
 
@@ -25,7 +25,7 @@ namespace interaktiva20_7.Data
 
         Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies);
 
-        Task<MovieDto> GetLikesAndDislikes(MovieDto movie);
+        Task<MovieDto> GetLikesAndDislikesForSingleMovie(MovieDto movie);
 
         Task<List<MovieDto>> GetCmdbMovies();
 

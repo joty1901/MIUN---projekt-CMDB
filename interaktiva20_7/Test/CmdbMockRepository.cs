@@ -24,12 +24,12 @@ namespace interaktiva20_7.Test
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<List<MovieDto>>(file);
             var movie = result.Where(m => m.ImdbID.Equals(imdbId)).FirstOrDefault();
-            var movieWithLikes = await GetLikesAndDislikes(movie);
+            var movieWithLikes = await GetLikesAndDislikesForSingleMovie(movie);
             await Task.Delay(0);
             return new MoviesViewModel(savedMovies, movieWithLikes);
         }
 
-        public async Task<MovieDto> GetLikesAndDislikes(MovieDto movie)
+        public async Task<MovieDto> GetLikesAndDislikesForSingleMovie(MovieDto movie)
         {
             var file = File.ReadAllText(basePath + "CmdbMockRepository.json");
             var result = JsonConvert.DeserializeObject<IEnumerable<MovieDto>>(file);
@@ -80,7 +80,7 @@ namespace interaktiva20_7.Test
         public async Task<MoviesViewModel> GetMovieViewModelFromSession(List<MovieDto> savedList)
         {
             var cmdbResult = await GetCmdbMovies();
-            var savedListUpdatedWithLikes = RecoverMissingLikes(savedList, cmdbResult);
+            var savedListUpdatedWithLikes = GetAllLikesAndDislikes(savedList, cmdbResult);
             await Task.Delay(0);
             return new MoviesViewModel(savedListUpdatedWithLikes);
         }
@@ -103,12 +103,12 @@ namespace interaktiva20_7.Test
             var file = File.ReadAllText(basePath + "OmdbMockRepository.json");
             var movies = JsonConvert.DeserializeObject<List<MovieDto>>(file);
 
-            movies = RecoverMissingLikes(movies, cmdbResult);
+            movies = GetAllLikesAndDislikes(movies, cmdbResult);
             await Task.Delay(0);
             return movies;
         }
 
-        public List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult)
+        public List<MovieDto> GetAllLikesAndDislikes(List<MovieDto> movies, List<MovieDto> cmdbResult)
         {
             foreach (var movie in movies)
             {

@@ -26,11 +26,14 @@ namespace interaktiva20_7.Data
             this.apiClient = apiClient;
         }
 
+        /// <summary>
+        /// Metod som hämtar alla filmer från CMDB. Skickar sedan vidare den listan till GetMovieInfoFromOmdb() som kompletterar listan med info från Omdb
+        /// </summary>
+        /// <returns>new MoviesViewModel</returns>
         public async Task<MoviesViewModel> GetMovieViewModel()
         {
-            string endpoint = $"{cmdbBaseUrl}/api/movie";
-            var result = await apiClient.GetASync<List<MovieDto>>(endpoint);
-            List<MovieDto> movies = await GetMovieInfoFromOmdb(result);
+            var cmdbMovies = await GetCmdbMovies();
+            List<MovieDto> movies = await GetMovieInfoFromOmdb(cmdbMovies);
 
             // Nedan kodrad är till för att uppdatera OmdbMockRepo med färsk data
             //File.WriteAllText("C:/Users/jonat/source/repos/interaktiva20_7/interaktiva20_7/Test/OmdbMockRepository.json", JsonConvert.SerializeObject(movies));
@@ -41,16 +44,15 @@ namespace interaktiva20_7.Data
         public async Task<List<MovieDto>> GetCmdbMovies()
         {
             string endpoint = $"{cmdbBaseUrl}/api/movie";
-            var result = await apiClient.GetASync<List<MovieDto>>(endpoint);
+            var cmdbMovies = await apiClient.GetASync<List<MovieDto>>(endpoint);
 
-            return result;
+            return cmdbMovies;
         }
-
 
         public async Task<MoviesViewModel> GetMovieViewModelFromSession(List<MovieDto> savedList)
         {
             var cmdbResult = await GetCmdbMovies();
-            var savedListUpdatedWithLikes = RecoverMissingLikes(savedList, cmdbResult);
+            var savedListUpdatedWithLikes = GetAllLikesAndDislikes(savedList, cmdbResult);
             return new MoviesViewModel(savedListUpdatedWithLikes);
         }
 
@@ -73,26 +75,56 @@ namespace interaktiva20_7.Data
                 movies.Add(tasks[i].Result);
             }
 
-            movies = RecoverMissingLikes(movies, cmdbResult);
+            movies = GetAllLikesAndDislikes(movies, cmdbResult);
 
             return movies;
         }
 
-        public List<MovieDto> RecoverMissingLikes(List<MovieDto> movies, List<MovieDto> cmdbResult)
+        public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring, List<MovieDto> movies)
         {
-            foreach(var movie in movies)
+            string endpoint = $"{omdbBaseUrl}/?s='{searchstring}'&apikey={apiKey}";
+            var omdbMovies = await apiClient.GetASync<SearchDto>(endpoint);
+            return new MoviesViewModel(omdbMovies.Search, movies);
+        }
+
+        public async Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies)
+        {
+            string endpoint = $"{omdbBaseUrl}/?apikey={apiKey}&i={imdbId}&plot=full";
+            var omdbMovie = await apiClient.GetASync<MovieDto>(endpoint);
+            var movieWithLikes = await GetLikesAndDislikesForSingleMovie(omdbMovie);
+
+            return new MoviesViewModel(savedMovies, movieWithLikes);
+        }
+
+        public async Task<MovieDto> GetLikesAndDislikesForSingleMovie(MovieDto omdbMovie)
+        {
+            var cmdbMovies = await GetCmdbMovies();
+
+            foreach (var cmdbMovie in cmdbMovies)
+            {
+                if (cmdbMovie.ImdbID.Equals(omdbMovie.ImdbID))
+                {
+                    omdbMovie.numberOfLikes = cmdbMovie.numberOfLikes;
+                    omdbMovie.numberOfDislikes = cmdbMovie.numberOfDislikes;
+                }
+            }
+            return omdbMovie;
+        }
+        public List<MovieDto> GetAllLikesAndDislikes(List<MovieDto> omdbMovies, List<MovieDto> cmdbResult)
+        {
+            foreach (var omdbMovie in omdbMovies)
             {
                 foreach (var cmdbMovie in cmdbResult)
                 {
-                    if (movie.ImdbID == cmdbMovie.ImdbID)
+                    if (omdbMovie.ImdbID == cmdbMovie.ImdbID)
                     {
-                        movie.numberOfLikes = cmdbMovie.numberOfLikes;
-                        movie.numberOfDislikes = cmdbMovie.numberOfDislikes;
-                        movie.ShortPlot = GetShortPlot(movie.Plot);
+                        omdbMovie.numberOfLikes = cmdbMovie.numberOfLikes;
+                        omdbMovie.numberOfDislikes = cmdbMovie.numberOfDislikes;
+                        omdbMovie.ShortPlot = GetShortPlot(omdbMovie.Plot);
                     }
                 }
             }
-            return movies;
+            return omdbMovies;
         }
 
         public string GetShortPlot(string plot)
@@ -110,7 +142,7 @@ namespace interaktiva20_7.Data
                     else
                     {
                         return shortPlot += "..."; ;
-                    }  
+                    }
                 }
 
                 return shortPlot += "...";
@@ -129,38 +161,6 @@ namespace interaktiva20_7.Data
             }
 
             return topFourMoviesList;
-        }
-
-        public async Task<MoviesViewModel> GetMoviesBySearchString(string searchstring, List<MovieDto> movies)
-        {
-            string endpoint = $"{omdbBaseUrl}/?s='{searchstring}'&apikey={apiKey}";
-            var result = await apiClient.GetASync<SearchDto>(endpoint);
-            return new MoviesViewModel(result.Search, movies);
-        }
-
-        public async Task<MoviesViewModel> GetMovieByImdbId(string imdbId, List<MovieDto> savedMovies)
-        {
-            string endpoint = $"{omdbBaseUrl}/?apikey={apiKey}&i={imdbId}&plot=full";
-            var result = await apiClient.GetASync<MovieDto>(endpoint);
-            var movieWithLikes = await GetLikesAndDislikes(result);
-
-            return new MoviesViewModel(savedMovies, movieWithLikes);
-        }
-
-        public async Task<MovieDto> GetLikesAndDislikes(MovieDto movie)
-        {
-            string endpoint = $"{cmdbBaseUrl}/api/movie";
-            var result = await apiClient.GetASync<IEnumerable<MovieDto>>(endpoint);
-
-            foreach (var m in result)
-            {
-                if (m.ImdbID.Equals(movie.ImdbID))
-                {
-                    movie.numberOfLikes = m.numberOfLikes;
-                    movie.numberOfDislikes = m.numberOfDislikes;
-                }
-            }
-            return movie;
         }
 
     }
